@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Overlock-Regular';
+  src: url(../fonts/Overlock-Regular.ttf);
+}
+body {
+  font-family: 'Overlock-Regular';
+  margin: 0;
+}
+.janezomgzomg {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: white;
+}
+.zomg-header {
+  font-weight: bold;
+  display: flex;
+  background: black;
+  height: 40px;
+  padding: 0 16px;
+}
+.zomg-header h1 {
+  margin: 0;
+  color: #8ddaff;
+}
+.zomg-body {
+  height: calc(100% - 40px);
+  padding: 16px;
+}
+.zomg-body .zomg-statement {
+  display: flex;
+  flex-direction: column;
+}
+.zomg-statement span {
+  padding: 8px 4px;
+  margin: 4px 0;
+  background: ghostwhite;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  transition: border-color 0.20s ease-in;
+}
+.zomg-statement span:hover {
+  border-bottom-color: #35b4f130;
+  border-bottom-left-radius: unset;
+  border-bottom-right-radius: unset;
+}
+.zomg-statement span:first-child {
+  margin-top: 0;
+}
+.zomg-statement span:last-child {
+  margin-bottom: 0;
+}
+.zomg-salty {
+  font-style: italic;
+}
+.zomg-footer {
+  display: flex;
+  padding: 32px 0 0;
+}
+.zomg-footer .zomg-contact-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zomg-contact-list li:not(last-child) {
+  margin: 0 8px 0 0 ;
+}
+.zomg-contact-list .icon {
+  background-size: 16px;
+  background-position: center;
+  height: 16px;
+  width: 16px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.20s ease-in;
+}
+.zomg-contact-list .icon:hover {
+  opacity: 0.75;
+}
+.icon.github {
+  background-image: url(../icons/github.svg);
+}
+.icon.linkedin {
+  background-image: url(../icons/linkedin.svg);
+}
