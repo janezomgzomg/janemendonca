@@ -10,6 +10,7 @@ const resumeSchema = [
       {type: 'subtitle', value: 'Lucidworks'},
       {type: 'description', value: 'UI Engineer'},
       {type: 'time-block', value: 'Nov 2017 – Present 2 yrs 2 mos'},
+      {type: 'location', value: 'San Francisco'}, 
       {type: 'content', value: 'Fusion!!'}
     ]
   },

@@ -11,67 +11,17 @@
   font-family: 'Overlock-Regular';
   src: url(../fonts/Overlock-Regular.ttf);
 }
+
 body {
   font-family: 'Overlock-Regular';
   margin: 0;
 }
+
 .janezomgzomg {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: var(--white);
-}
-
-/* header*/
-.zomg-page-header {
-  font-weight: bold;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-}
-.zomg-header {
-  background: var(--brown);
-  padding: 0 16px;
-  height: 60px;
-  display: flex;
-    align-items: center;
-}
-.zomg-header h1 {
-  margin: 0;
-  color: var(--yellow);
-}
-.zomg-header-menu {
-
-}
-.zomg-header-menu ul.menu {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  list-style: none;
-  height: 40px;
-  background: var(--candy-apple-red);
-}
-.zomg-header-menu ul.menu li {
-  display: flex;
-  align-self: center;
-  padding: 0 8px;
-  color: var(--yellow);
-  transition: background 0.20s ease-in, color 0.20s ease-in;
-}
-.zomg-header-menu ul.menu li:first-of-type {
-  padding-left: 16px;
-}
-.zomg-header-menu ul.menu li:last-of-type {
-  padding-right: 16px;
-}
-.zomg-header-menu ul.menu li:hover {
-  cursor: pointer;
-  background: var(--brown);
-}
-.zomg-header-menu ul.menu li:active, .zomg-header-menu ul.menu li.selected {
-  cursor: pointer;
-  background: var(--white);
-  color: var(--candy-apple-red);
 }
 
 /* body */
