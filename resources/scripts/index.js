@@ -1,6 +1,7 @@
 function init() {
   setDefaultView();
 }
+
 function openLink(link) {
   var LINKS = {
     github: {
@@ -15,7 +16,7 @@ function openLink(link) {
 
 
 function setDefaultView() {
-  setView('home');
+  setView('resume');
 }
 function clickMenuTab(tab) {
   clearCurrentView().then(() => {
@@ -23,11 +24,14 @@ function clickMenuTab(tab) {
   });
 }
 function setView(view) {
-  setSection(view);
   setTab(view);
+  setSection(view);
 }
 function setSection(view) {
   document.getElementById(`section-${view}`).classList.add('selected');
+  if(view === 'resume') {
+    renderResume();
+  }
 }
 function setTab(view) {
   document.getElementById(`menu-${view}`).classList.add('selected');

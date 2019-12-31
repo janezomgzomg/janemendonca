@@ -2,6 +2,7 @@
   --white: #F3F3F3;
   --brown: #250001;
   --rosewood: #590004;
+  --rosewood-rgb: 89, 0, 4;
   --candy-apple-red: #A50104;
   --yellow: #FCBA04;
 }
@@ -83,6 +84,24 @@ body {
 }
 .zomg-section.selected {
   display: block;
+}
+
+.zomg-section .section-part {
+  display: flex;
+  flex-direction: column;
+}
+.zomg-section .section-part .h2-label {
+  text-decoration: underline;
+  text-decoration-color: var(--candy-apple-red);
+  margin: 0;
+}
+.zomg-section .section-part .h3-subtitle {
+  margin: 0;
+  color: var(--candy-apple-red);
+}
+.zomg-section .section-part .section-part-segment {
+  padding: 0 8px;
+    margin: 0 0 16px;
 }
 
 /* footer */
