@@ -4,25 +4,37 @@
   <link rel="stylesheet" type="text/css" href="resources/styles/styles.css">
   <script src="resources/scripts/index.js"></script>
 </head>
-<body>
+<body onload="init()">
   <div class="janezomgzomg">
-    <div class="zomg-header">
-      <h1>Jane Mendonca</h1>
-    </div>
-    <div class="zomg-body">
-      <div class="zomg-statement">
-        <span>My incredibly posh website is supposed to exist here</span>
-        <span>But alas, it does not</span>
-        <span class="zomg-salty">Weep</span>
+    <div class="zomg-page-header">
+      <div class="zomg-header">
+        <h1>Jane Mendonça</h1>
       </div>
-      <div class="zomg-footer">
-        <ul class="zomg-contact-list">
-          <li class="icon github" onclick="openLink('github')"></li>
-          <li class="icon linkedin" onclick="openLink('linkedin')"></li>
+      <div class="zomg-header-menu">
+        <ul class="menu">
+          <li id="menu-home" onclick="clickMenuTab('home')">Home</li>
+          <li id="menu-resume" onclick="clickMenuTab('resume')">Resumé</li>
+          <li id="menu-about" onclick="clickMenuTab('about')">About</li>
         </ul>
       </div>
     </div>
+    <div class="zomg-body">
+      <div class="zomg-section" id="section-home">
+        <p>Home section</p>
+      </div>
+      <div class="zomg-section" id="section-resume">
+        <p>Resume section</p>
+      </div>
+      <div class="zomg-section" id="section-about">
+        <p>About section</p>
+      </div>
+    </div>
+    <div class="zomg-page-footer">
+      <ul class="icon-menu zomg-footer-links">
+        <li class="icon github" onclick="openLink('github')"></li>
+        <li class="icon linkedin" onclick="openLink('linkedin')"></li>
+      </ul>
+    </div>
   </div>
-  
 </body>
 </html>
