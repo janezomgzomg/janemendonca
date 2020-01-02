@@ -19,8 +19,8 @@ const HeaderMenuModule = (() => {
 
   const menu = {
     items: [
-      {id: 'menu-home', label: 'Home', selected: true},
-      {id: 'menu-resume', label: 'Resume'},
+      {id: 'menu-home', label: 'Home' },
+      {id: 'menu-resume', label: 'Resume', selected: true},
       {id: 'menu-blog', label: 'Blog'},
     ]
   };
