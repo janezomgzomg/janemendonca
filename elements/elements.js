@@ -60,10 +60,7 @@ const APP_ELEMENTS = {
     styles: () => {
       return `
         ul.menu {
-          margin: 0;
-          padding: 0;
           display: flex;
-          list-style: none;
         }
 
         ul.menu li {

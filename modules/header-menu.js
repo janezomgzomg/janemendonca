@@ -36,8 +36,9 @@ const HeaderMenuModule = (() => {
       template: '',
       styles
     };
-    COMPONENTS.renderComponent(component);
-    Elements('menu').renderElement('HeaderMenu', menu);
+    COMPONENTS.renderComponent(component).then(() => {
+      Elements('menu').renderElement('HeaderMenu', menu);
+    });
   }
   return {
     construct

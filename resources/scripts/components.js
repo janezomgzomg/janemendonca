@@ -35,9 +35,14 @@ const COMPONENTS = (() => {
   };
 
   const renderComponent = ({id, bindTo, attrs, template, styles}) => {
-    const parentContainer = document.getElementById(bindTo);
-    const component = createComponent(id, attrs, template, styles);
-    parentContainer.appendChild(component);
+    return new Promise((resolve, reject) => {
+      return setTimeout(() => {
+        const parentContainer = document.getElementById(bindTo);
+        const component = createComponent(id, attrs, template, styles);
+        parentContainer.appendChild(component);
+        return resolve();
+      }, 0);
+    });
   };
   
   const createComponent = ((id, attrs, template, styles) => {

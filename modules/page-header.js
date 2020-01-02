@@ -11,17 +11,17 @@ const PageHeaderModule = (() => {
       padding: 0 16px;
       height: 60px;
       display: flex;
-        align-items: center;
+      align-items: center;
     }
     .zomg-header h1 {
       margin: 0;
       color: var(--yellow);
     }
   `;
-  
+
   const template = `
     <div class="zomg-header">
-      <h1>Jane Mendonça</h1>
+      <h1>Jane Mendon&ccedil;a</h1>
     </div>
   `;
 

@@ -24,8 +24,14 @@ body {
   background: var(--white);
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 /* body */
-.zomg-body {
+/* .zomg-body {
   height: calc(100% - 135px);
   padding: 16px;
 }
@@ -52,40 +58,4 @@ body {
 .zomg-section .section-part .section-part-segment {
   padding: 0 8px;
     margin: 0 0 16px;
-}
-
-/* footer */
-.zomg-page-footer ul.icon-menu {
-  height: 35px;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  list-style: none;
-}
-.zomg-page-footer ul.icon-menu li {
-  display: flex;
-  align-self: center;
-  padding: 0 4px;
-
-  background-size: 16px;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 16px;
-  width: 16px;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.20s ease-in;
-}
-.zomg-page-footer ul.icon-menu li:first-of-type {
-  padding-left: 16px;
-}
-.zomg-page-footer ul.icon-menu li:hover, .zomg-page-footer ul.icon-menu li:active {
-  opacity: 1;
-}
-
-.icon.github {
-  background-image: url(../icons/github.svg);
-}
-.icon.linkedin {
-  background-image: url(../icons/linkedin.svg);
-}
+} */
