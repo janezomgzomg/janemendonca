@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { resume } from '../app-home/resume';
 
 @Component({
   tag: 'app-root',
@@ -10,7 +11,18 @@ export class AppRoot {
     return (
       <div>
         <header>
-          <h1>Jane Mendonca</h1>
+          <div class="name">
+            <h1>Jane Mendonca</h1>
+            <h4>/d͡ʒeɪn men,dɒnsɑː/</h4>
+          </div>
+          <div class="sections-menu">
+            <ul>
+              {resume.sections.map((section) => {
+                return (<li>{section.title}</li>)
+              })}
+              
+            </ul>
+          </div>
         </header>
 
         <main>

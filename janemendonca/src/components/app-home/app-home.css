@@ -1,42 +1,53 @@
 .app-home {
   display: flex;
   flex-direction: column;
-  padding: 32px;
   align-items: center;
+  justify-content: center;
+  margin: 0 32px 32px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 32px);
+  /* justify-content: flex-start; */
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 26%);
+  /* padding: 32px 64px; */
+  border: solid 5px  #05D1FF;
+  border-radius: 4px;
+  background: rgb(5 174 255 / 5%);
+  margin-bottom: 64px;
+  padding: 32px 0 32px 32px;
+}
+
+.about-me {
+  width: 100%;
+  padding: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+.section app-profile {
+  flex: 1;
+}
+
+.about-me app-profile {
+  flex: initial;
 }
 
 .selfie {
   background-image: url('../../assets/images/MVIMG_20190701_161141.jpg');
   height: 500px;
-  width: 500px;
-  border-radius: 50%;
+  width: 600px;
+  /* border-radius: 50%; */
   background-size: cover;
   background-position: center;
-  margin-right: 32px;
-  box-shadow: 4px 5px 6px 0 rgb(72 169 188 / 50%);
+  border-right: solid 5px #05d1ff;
+  flex: 100%;
+  margin-right: 128px;
+  /* box-shadow: 4px 5px 6px 0 rgb(72 169 188 / 50%); */
+  /* border: solid 5px black; */
 }
 
-.text {
-  flex: 1;
-  font-size: 1.5rem;
-  margin: auto;
-  width: 70vw;
-}
-
-.text h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #47A8BD;
-  font-family: "Pacifico Regular";
-  margin: 0;
-  border-bottom: solid 10px rgb(255 255 0 / 20%);
-}
-
-.links {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
 .links li {
   height: 20px;
   width: 20px;

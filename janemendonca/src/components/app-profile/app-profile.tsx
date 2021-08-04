@@ -1,5 +1,4 @@
 import { Component, Prop, h } from '@stencil/core';
-import { MatchResults } from '@stencil/router';
 
 @Component({
   tag: 'app-profile',
@@ -7,22 +6,18 @@ import { MatchResults } from '@stencil/router';
   shadow: true,
 })
 export class AppProfile {
-  @Prop() match: MatchResults;
+  @Prop() section: any;
 
-  normalize(name: string): string {
-    if (name) {
-      return name.substr(0, 1).toUpperCase() + name.substr(1).toLowerCase();
-    }
-    return '';
-  }
+  // componentWillLoad() {
+  //   console.log(this.section);
+  // }
 
   render() {
-    if (this.match && this.match.params.name) {
-      return (
-        <div class="app-profile">
-          <p>Hello! My name is {this.normalize(this.match.params.name)}. My name was passed in through a route param!</p>
-        </div>
-      );
-    }
+    return (
+      <div class="app-profile">
+        <h2>{this.section.title}</h2>
+        <p>{this.section.text}</p>
+      </div>
+    );
   }
 }

@@ -1,3 +1,18 @@
 .app-profile {
-  padding: 10px;
+  font-size: 1.5rem;
+  /* margin: auto; */
+  /* width: 70vw; */
+}
+
+.app-profile h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #05D1FF;
+  font-family: "Pacifico Regular";
+  margin: 0;
+  border-bottom: solid 5px rgb(255 51 61 / 90%)
+}
+
+.app-profile p {
+  margin-right: 32px;
 }
