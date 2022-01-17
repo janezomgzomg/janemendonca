@@ -2,14 +2,11 @@
 <head>
   <title>Jane Mendonca</title>
   <link rel="stylesheet" type="text/css" href="resources/styles/styles.css">
-
-  <!-- <script src="index.js"></script>
-  <script src="resources/scripts/util.js"></script>
-  <script src="resources/scripts/components.js"></script>
-  <script src="modules/modules.js"></script>
-  <script src="elements/elements.js"></script> -->
+  
+  <script src="index.js"></script>
+  <script src="resources/scripts/game.js"></script>
 </head>
-<body>
+<body onload="init()">
   <header>
     <h1 class="header-name">Jane Mendonca</h1>
     <div class="header-links">
@@ -17,11 +14,12 @@
     </div>
   </header>
   <section id="game">
-    <div id="screen">
-      
+    <button id="play-btn" class="btn play" onclick="initGame()">PLAY</button>
+    <div id="game-screen">
+      <div id="player"></div>
+      <div id="land"></div>
     </div>
 
   </section>
-  <!-- <div id="janezomgzomg" class="janezomgzomg"></div> -->
 </body>
 </html>

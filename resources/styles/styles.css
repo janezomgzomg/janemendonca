@@ -26,13 +26,6 @@ body {
   flex-direction: column;
 }
 
-/* .janezomgzomg {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: var(--white);
-} */
-
 ul {
   margin: 0;
   padding: 0;
@@ -62,40 +55,47 @@ header ul li {
   justify-content: center;
   padding-top: 10vh;
 }
-#screen {
+.btn {
+  height: 3em;
+  background: none;
+  border: solid 1px;
+  color: var(--green);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0 20px;
+}
+.btn:hover {
+  background-color: rgb(32 32 32 / 50%);
+}
+.btn:active {
+  background-color: var(--green);
+  color: var(--white);
+  border: var(--green);
+}
+
+#play-btn, #game-screen {
+  display: none;
+}
+#game-screen {
   height: 50vh;
   width: 50vw;
   border: var(--green) solid 5px;
+  position: relative;
 }
-
-
-
-/* body */
-/* .zomg-body {
-  height: calc(100% - 135px);
-  padding: 16px;
+#player {
+  height: 4vh;
+  width: 2vw;
+  border-radius: 10px;
+  background-color: var(--white);
+  position: absolute;
+  left: 0;
+  bottom: 15vh;
+  margin: 0.25em;
 }
-.zomg-section {
-  display: none;
+#land {
+  width: 100%;
+  background: green;
+  height: 15vh;
+  position: absolute;
+  bottom: 0;
 }
-.zomg-section.selected {
-  display: block;
-}
-
-.zomg-section .section-part {
-  display: flex;
-  flex-direction: column;
-}
-.zomg-section .section-part .h2-label {
-  text-decoration: underline;
-  text-decoration-color: var(--candy-apple-red);
-  margin: 0;
-}
-.zomg-section .section-part .h3-subtitle {
-  margin: 0;
-  color: var(--candy-apple-red);
-}
-.zomg-section .section-part .section-part-segment {
-  padding: 0 8px;
-    margin: 0 0 16px;
-} */
