@@ -46,6 +46,7 @@ header h1 {
 }
 header ul li {
   cursor: pointer;
+  /* background: url(../icons/linkedin.svg); */
 }
 
 #game {
