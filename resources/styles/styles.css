@@ -1,4 +1,9 @@
 :root {
+  --background: #480ca8;
+  --foreground: #f9f8f8;
+  --content-bg: #000;
+  --green: green;
+
   --white: #F3F3F3;
   --brown: #250001;
   --rosewood: #590004;
@@ -8,27 +13,62 @@
 }
 
 @font-face {
-  font-family: 'Overlock-Regular';
-  src: url(../fonts/Overlock-Regular.ttf);
+  font-family: 'Norican-Regular';
+  src: url(../fonts/Norican-Regular.ttf);
 }
 
 body {
-  font-family: 'Overlock-Regular';
+  
   margin: 0;
+  background-color: var(--background);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.janezomgzomg {
+/* .janezomgzomg {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background: var(--white);
-}
+} */
 
 ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
+header {
+
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  font-family: 'Norican-Regular';
+  color: var(--foreground);
+  font-size: 2.5em;
+}
+header ul li {
+  cursor: pointer;
+}
+
+#game {
+  background-color: var(--content-bg);
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding-top: 10vh;
+}
+#screen {
+  height: 50vh;
+  width: 50vw;
+  border: var(--green) solid 5px;
+}
+
+
 
 /* body */
 /* .zomg-body {
