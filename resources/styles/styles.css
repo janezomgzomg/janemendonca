@@ -1,4 +1,9 @@
 :root {
+  --background: #480ca8;
+  --foreground: #f9f8f8;
+  --content-bg: #000;
+  --green: green;
+
   --white: #F3F3F3;
   --brown: #250001;
   --rosewood: #590004;
@@ -8,20 +13,17 @@
 }
 
 @font-face {
-  font-family: 'Overlock-Regular';
-  src: url(../fonts/Overlock-Regular.ttf);
+  font-family: 'Norican-Regular';
+  src: url(../fonts/Norican-Regular.ttf);
 }
 
 body {
-  font-family: 'Overlock-Regular';
+  
   margin: 0;
-}
-
-.janezomgzomg {
+  background-color: var(--background);
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background: var(--white);
 }
 
 ul {
@@ -30,32 +32,71 @@ ul {
   list-style: none;
 }
 
-/* body */
-/* .zomg-body {
-  height: calc(100% - 135px);
-  padding: 16px;
+header {
+
+  padding: 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.zomg-section {
-  display: none;
+header h1 {
+  font-family: 'Norican-Regular';
+  color: var(--foreground);
+  font-size: 2.5em;
 }
-.zomg-section.selected {
-  display: block;
+header ul li {
+  cursor: pointer;
+  /* background: url(../icons/linkedin.svg); */
 }
 
-.zomg-section .section-part {
+#game {
+  background-color: var(--content-bg);
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  padding-top: 10vh;
 }
-.zomg-section .section-part .h2-label {
-  text-decoration: underline;
-  text-decoration-color: var(--candy-apple-red);
-  margin: 0;
+.btn {
+  height: 3em;
+  background: none;
+  border: solid 1px;
+  color: var(--green);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0 20px;
 }
-.zomg-section .section-part .h3-subtitle {
-  margin: 0;
-  color: var(--candy-apple-red);
+.btn:hover {
+  background-color: rgb(32 32 32 / 50%);
 }
-.zomg-section .section-part .section-part-segment {
-  padding: 0 8px;
-    margin: 0 0 16px;
-} */
+.btn:active {
+  background-color: var(--green);
+  color: var(--white);
+  border: var(--green);
+}
+
+#play-btn, #game-screen {
+  display: none;
+}
+#game-screen {
+  height: 50vh;
+  width: 50vw;
+  border: var(--green) solid 5px;
+  position: relative;
+}
+#player {
+  height: 4vh;
+  width: 2vw;
+  border-radius: 10px;
+  background-color: var(--white);
+  position: absolute;
+  left: 0;
+  bottom: 15vh;
+  margin: 0.25em;
+}
+#land {
+  width: 100%;
+  background: green;
+  height: 15vh;
+  position: absolute;
+  bottom: 0;
+}

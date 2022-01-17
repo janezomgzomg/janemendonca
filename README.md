@@ -1,2 +1,2 @@
-# janezomgzomg.github.io
+# janemendonca
 My incredibly posh website
