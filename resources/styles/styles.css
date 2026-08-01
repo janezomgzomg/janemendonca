@@ -53,8 +53,7 @@ header ul li {
   background-color: var(--content-bg);
   display: flex;
   flex: 1;
-  justify-content: center;
-  padding-top: 10vh;
+  padding: 5vh 3vw;
 }
 .btn {
   height: 3em;
