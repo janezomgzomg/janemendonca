@@ -8,14 +8,19 @@ Each phase ends with something checkable (app runs, page renders, deploy
 succeeds) before moving on. We pause for your review at the end of every
 phase rather than pushing straight through.
 
-## Phase 0 — Housekeeping
+Deployment (Phases 6–7) now happens **early** — right after page shells and
+the under-construction banner exist (Phase 5) — rather than waiting for real
+content. The site goes live at `janemendonca.com` showing a banner, and the
+banner disappears on its own as real content lands per-page in Phase 8.
+
+## Phase 0 — Housekeeping ✅ done
 - Move `index.html`, `index.js`, `resources/` into `/legacy` (git mv, so
   history is preserved).
 - Confirm nothing at repo root still references the old paths.
 - **Checkpoint:** repo root is clean except `/legacy`, `/docs`, and repo
   metadata files (README, LICENSE).
 
-## Phase 1 — Scaffold the React app
+## Phase 1 — Scaffold the React app ✅ done
 - `npm create vite@latest app -- --template react-ts` to scaffold `/app`.
 - Install and configure Tailwind CSS.
 - Install React Router.
@@ -23,16 +28,20 @@ phase rather than pushing straight through.
   `/app/dist`.
 - **Checkpoint:** blank Vite+React+TS+Tailwind app runs locally.
 
-## Phase 2 — Page architecture
-- Define the `PageConfig` type (`path`, `component`, `data`) per the PRD.
+## Phase 2 — Page architecture ✅ done
+- Define the `PageConfig` type (`path`, `label`, `component`, `data`,
+  `placeholder`) per the PRD.
 - Create `app/src/pages/registry.ts` wiring React Router to four routes:
   `/`, `/resume`, `/music`, `/how-this-was-built`.
-- Create one placeholder component per page (renders a heading + "coming
-  soon"), each reading from a matching placeholder JSON file in
-  `app/src/data/`.
+- Each page lives in its own folder (`app/src/pages/<PageName>/`) with six
+  files: component, Tailwind stylesheet, Zod schema (source of truth,
+  includes a required `placeholder: boolean` field), inferred types, JSON
+  data, and a Vitest + RTL test.
+- Shared UI lives in `app/src/components/` (e.g. `Nav`).
 - **Checkpoint:** all four routes navigate correctly with placeholder
-  content, confirming the schema-driven wiring works end-to-end before any
-  real design or content goes in.
+  content (`placeholder: true` in every page's data), confirming the
+  schema-driven wiring works end-to-end before any real design or content
+  goes in.
 
 ## Phase 3 — Design pass
 - Propose a palette, typography, and layout shell (nav, header/footer)
@@ -43,7 +52,7 @@ phase rather than pushing straight through.
 
 ## Phase 4 — Page-by-page build (shell first, content after)
 For each page, build the component to the shape its data will need, still
-using placeholder data:
+using placeholder data (`placeholder: true`):
 - **About/bio** (`/`) — simple text layout.
 - **Resume** (`/resume`) — structured sections (experience, skills,
   education).
@@ -55,13 +64,14 @@ using placeholder data:
 - **Checkpoint:** all four pages are visually complete with placeholder
   data; component shapes are locked.
 
-## Phase 5 — Real content
-- You supply content per page (text, resume details, photos, music links,
-  venue/gig history).
-- We finalize each page's JSON data shape as content is supplied (this is
-  where the open questions from the PRD — e.g. `music.json` fields — get
-  resolved) and swap it in.
-- **Checkpoint:** every page shows real content, no placeholders remain.
+## Phase 5 — Under-construction banner
+- Build `UnderConstructionBanner` in `app/src/components/`.
+- Wire it into `App.tsx`: compute `pages.some((p) => p.placeholder)` from
+  the registry, pass the result down as a prop (mirrors how `Nav` receives
+  `items`, keeping the banner presentational and testable).
+- Write a test covering both the shown and hidden states.
+- **Checkpoint:** banner is visible on every page locally (all pages are
+  still `placeholder: true` at this point).
 
 ## Phase 6 — CI/CD (GitHub Actions → gh-pages)
 - Add a workflow that on push to `master`: installs deps, builds `/app`,
@@ -70,7 +80,8 @@ using placeholder data:
 - Add a `CNAME` file (`janemendonca.com`) to the published output so the
   custom domain persists across deploys.
 - **Checkpoint:** a push to `master` results in a live deploy at the
-  default `github.io` URL (before domain cutover).
+  default `github.io` URL, showing the under-construction banner (before
+  domain cutover).
 
 ## Phase 7 — Domain cutover
 - You update DNS at the registrar: A records for the apex domain to
@@ -79,13 +90,27 @@ using placeholder data:
   we do this step.
 - Verify `janemendonca.com` resolves to GitHub Pages and HTTPS is issued
   (GitHub auto-provisions a cert once DNS is correctly pointed).
-- **Checkpoint:** `janemendonca.com` serves the live site over HTTPS.
+- **Checkpoint:** `janemendonca.com` serves the live under-construction
+  site over HTTPS. **The site is now publicly live** ahead of real content.
 
-## Phase 8 — Final QA
+## Phase 8 — Real content
+- You supply content per page (text, resume details, photos, music links,
+  venue/gig history).
+- We finalize each page's JSON data shape as content is supplied (this is
+  where the open questions from the PRD — e.g. `music.json` fields — get
+  resolved), swap it in, and flip that page's `placeholder` to `false`.
+- Each push to `master` auto-deploys via the Phase 6 workflow, so the live
+  site updates incrementally, page by page.
+- **Checkpoint:** every page shows real content and `placeholder: false`;
+  the under-construction banner disappears automatically on the next
+  deploy once all four are `false`.
+
+## Phase 9 — Final QA
 - Click through all four routes in production, confirm deep links (e.g.
   loading `/resume` directly, not just navigating from `/`) work correctly
   under GitHub Pages' static hosting.
 - Check mobile responsiveness.
+- Confirm the under-construction banner is gone.
 - **Checkpoint:** sign-off, PR merged from `aug-2026-website-revamp` into
   `master`.
 

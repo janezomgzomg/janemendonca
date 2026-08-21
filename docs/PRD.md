@@ -22,6 +22,9 @@ single-page application, deployed automatically to GitHub Pages.
   manual build step.
 - Restore `janemendonca.com` as the custom domain, now pointed at GitHub
   Pages.
+- Go live early, as soon as page shells exist (before real content is
+  filled in), showing a site-wide "under construction" banner until every
+  page has real content.
 
 ## 3. Non-Goals (out of scope for this phase)
 
@@ -93,6 +96,9 @@ type PageConfig = {
   from page-specific components.
 - This keeps components reusable/presentational and content edits isolated
   to data files, without touching component code.
+- Every page's schema requires a `placeholder: boolean` field (drives the
+  under-construction banner — see §9). It starts `true` for every page and
+  flips to `false` as real content replaces the placeholder, page by page.
 
 Content/data for each page is supplied **after** the page shell/component is
 built — pages start with realistic placeholder data and get real content
@@ -126,28 +132,46 @@ deployment pipeline. Effectively documents this exact project.
 Fresh design, no constraints from the old site — palette, typography, and
 layout to be proposed during implementation and iterated on visually.
 
-## 9. Deployment & Domain
+## 9. Under-Construction Banner
+
+- A persistent banner is shown across every page (not a full-page
+  interstitial — the real pages/nav stay reachable underneath) whenever
+  **any** page's data still has `placeholder: true`.
+- Driven automatically off page content, not a manual site-wide switch:
+  `App.tsx` computes `pages.some((p) => p.placeholder)` from the registry
+  and passes the result to an `UnderConstructionBanner` component in
+  `app/src/components/`.
+- As each page's real content replaces its placeholder data (Phase 7 of the
+  implementation plan), that page's `placeholder` flips to `false`. Once
+  every page is `false`, the banner disappears on the next deploy — no
+  separate step required to "turn it off."
+
+## 10. Deployment & Domain
 
 - GitHub Actions workflow triggers on push to `master`, builds `/app`,
   publishes `dist/` to `gh-pages`.
 - GitHub Pages configured to serve from the `gh-pages` branch.
+- Goes live **early** — as soon as page shells exist (placeholder content,
+  under-construction banner showing) — rather than waiting for real
+  content. See the implementation plan for phase ordering.
 - `janemendonca.com` DNS currently resolves to `13.52.188.95` /
   `52.52.192.191` — **not** GitHub Pages IPs. DNS needs to be repointed
   (A records to GitHub Pages' `185.199.108/109/110/111.153`, or apex
   handled per registrar) — this requires registrar access outside of this
-  repo and is a manual step alongside the code changes.
+  repo and happens as part of the early deploy, not deferred to the end.
 - A `CNAME` file (containing `janemendonca.com`) will be added back to the
   published output so GitHub Pages recognizes the custom domain.
 
-## 10. Open Questions
+## 11. Open Questions
 
 - Exact copy/content for About and Resume pages (TBD, supplied per-page
   during implementation).
 - Exact shape of `music.json` (photo sources, external link list, venue/gig
   fields) — to be finalized when Music page content is supplied.
 - Specific wording/depth for the "How this Website was built" writeup.
+- Exact banner copy/wording (TBD when we build it).
 
-## 11. Success Criteria
+## 12. Success Criteria
 
 - `janemendonca.com` serves the new React site at all four routes with
   working client-side navigation.
@@ -155,3 +179,6 @@ layout to be proposed during implementation and iterated on visually.
 - Old static site files are archived in `/legacy`, no longer served.
 - Each page's content is driven by its own data file, not hardcoded in
   components.
+- The site goes live at `janemendonca.com` early, with an under-construction
+  banner, before all real content is in place; the banner disappears on its
+  own once every page's `placeholder` flag is `false`.
