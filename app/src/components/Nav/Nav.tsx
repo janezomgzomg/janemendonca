@@ -1,9 +1,6 @@
 import { NavLink } from 'react-router-dom'
-
-type NavItem = {
-  path: string
-  label: string
-}
+import type { NavItem } from './Nav.types'
+import './Nav.css'
 
 export default function Nav({ items }: { items: NavItem[] }) {
   return (
