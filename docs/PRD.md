@@ -52,9 +52,11 @@ is what GitHub Pages actually serves.
 |---|---|
 | Framework | React (Vite scaffold) |
 | Language | TypeScript |
-| Styling | Tailwind CSS |
+| Styling | Tailwind CSS — utility classes directly in JSX, no component library (no shadcn/ui, no Headless UI); shared UI is plain React components in `/components` |
 | Routing | React Router |
 | Package manager | npm |
+| Validation | Zod (schema is the source of truth; types are inferred from it) |
+| Testing | Vitest + React Testing Library |
 | Deployment | GitHub Actions → `gh-pages` branch → GitHub Pages |
 | Domain | `janemendonca.com` (custom domain via `CNAME`) |
 
@@ -65,16 +67,30 @@ Each page is defined by a config entry rather than being hand-assembled:
 ```ts
 type PageConfig = {
   path: string;
+  label: string;
   component: React.ComponentType<{ data: unknown }>;
-  data: unknown; // loaded from a per-page JSON file
+  data: unknown; // parsed through the page's Zod schema
 };
 ```
 
-- A central page registry (e.g. `app/src/pages/registry.ts`) lists all
-  `PageConfig` entries and feeds React Router's route table.
-- Each page's content lives in its own JSON file (e.g.
-  `app/src/data/resume.json`, `app/src/data/music.json`), imported and typed
-  per page.
+- A central page registry (`app/src/pages/registry.ts`) lists all
+  `PageConfig` entries and feeds React Router's route table in `App.tsx`.
+- Each page lives in its own folder under `app/src/pages/<PageName>/`,
+  containing five files:
+  - `<PageName>.tsx` — the presentational component
+  - `<PageName>.schema.ts` — a Zod schema; this is the **source of truth**
+    for the page's data shape
+  - `<PageName>.types.ts` — a thin re-export,
+    `type X = z.infer<typeof schema>`, so the type can never drift from the
+    schema that actually validates the data
+  - `<PageName>.data.json` — the page's content
+  - `<PageName>.test.tsx` — Vitest + React Testing Library tests that parse
+    the data through the schema and render the component
+- The registry imports each page's raw JSON and calls `schema.parse(...)`
+  on it before handing the result to `PageConfig.data` — a malformed data
+  file fails loudly (build/dev time) instead of silently breaking the UI.
+- Shared, reusable UI (e.g. `Nav`) lives in `app/src/components/`, separate
+  from page-specific components.
 - This keeps components reusable/presentational and content edits isolated
   to data files, without touching component code.
 

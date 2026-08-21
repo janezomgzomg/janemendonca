@@ -1,0 +1,17 @@
+{
+  "heading": "Resume",
+  "sections": [
+    {
+      "title": "Experience",
+      "items": ["Placeholder role — Company (Year–Year)"]
+    },
+    {
+      "title": "Skills",
+      "items": ["Placeholder skill"]
+    },
+    {
+      "title": "Education",
+      "items": ["Placeholder degree — Institution"]
+    }
+  ]
+}
