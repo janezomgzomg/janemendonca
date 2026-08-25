@@ -142,8 +142,13 @@ type FacetedDataset<T> = { facetDefinitions: { key: string; label: string; multi
 
 ## 7. Pages
 
-### 7.1 About / bio — `/`
-Short professional/personal intro. Content TBD (placeholder first).
+### 7.1 About / bio — `/` — **content finalized**
+A circular photo (`public/images/jane-musician.png`, a live performance
+shot, cropped/positioned via CSS to center on her face) alongside a
+real bio in three paragraphs: an introduction, her frontend engineering
+background, and her work as a multi-instrumentalist (Right Proper, Gamelan
+Sekar Jaya, SingJam/Sacred Music Fellowship). Data shape:
+`{ heading, photo: { src, alt }, paragraphs: string[] }`.
 
 ### 7.2 Resume / experience — `/resume`
 Presented as a faceted browser (see §6.1) rather than a static list: each
@@ -210,10 +215,11 @@ layout to be proposed during implementation and iterated on visually.
 
 ## 11. Open Questions
 
-- Exact copy/content for About and Resume pages (TBD, supplied per-page
-  during implementation).
-- Exact shape of `music.json` (photo sources, external link list, venue/gig
-  fields) — to be finalized when Music page content is supplied.
+- Exact copy/content for the Resume page (TBD, supplied per-page during
+  implementation). About's content is finalized (§7.1).
+- Exact shape of remaining `music.json` content (photo sources, external
+  link list) — the faceted item shape is established (§6.1, §7.3); actual
+  photos and links are still TBD.
 - Specific wording/depth for the "How this Website was built" writeup.
 - Exact banner copy/wording (TBD when we build it).
 

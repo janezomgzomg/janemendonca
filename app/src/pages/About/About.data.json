@@ -1,4 +1,13 @@
 {
   "heading": "About",
-  "body": "Placeholder bio content — to be replaced with real copy."
+  "photo": {
+    "src": "/images/jane-musician.png",
+    "alt": "Jane Mendonca performing on keyboard"
+  },
+  "paragraphs": [
+    "Hello, I am Jane Mendonca!",
+    "I am a Frontend Product Engineer with staff-level experience delivering data-intensive enterprise search interfaces. I find great satisfaction in applying deep frontend architecture expertise to drive innovative, high-impact products.",
+    "I am also a multi-instrumentalist whose work spans across multiple genres including rock, metal, jazz, funk, bluegrass, and Balinese gamelan. As an accompanist and jam supporter, I bring in a strong foundation in collaboration, arrangement, sound design, and spontaneous musical interaction, and I love helping musicians of all backgrounds perform at their best. I currently perform with Right Proper, Gamelan Sekar Jaya, and SingJam (Sacred Music Fellowship). I am also a Board member of Sacred Music Fellowship.",
+    "In my free time, I entertain my senior tabby cat, tend to my patio garden, make art, jam in the forest with friends, and snowboard."
+  ]
 }
