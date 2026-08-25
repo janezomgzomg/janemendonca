@@ -1,17 +1,52 @@
 {
   "heading": "Resume",
-  "sections": [
+  "facetDefinitions": [
+    { "key": "skill", "label": "Skill", "multiSelect": true },
+    { "key": "roleType", "label": "Role Type" },
+    { "key": "period", "label": "Period" }
+  ],
+  "items": [
     {
-      "title": "Experience",
-      "items": ["Placeholder role — Company (Year–Year)"]
+      "id": "placeholder-role-1",
+      "facets": {
+        "skill": ["Placeholder Skill A"],
+        "roleType": ["Full-time"],
+        "period": ["2023–Present"]
+      },
+      "data": {
+        "role": "Placeholder Role One",
+        "company": "Placeholder Company A",
+        "period": "2023–Present",
+        "description": "Placeholder description of this role."
+      }
     },
     {
-      "title": "Skills",
-      "items": ["Placeholder skill"]
+      "id": "placeholder-role-2",
+      "facets": {
+        "skill": ["Placeholder Skill B"],
+        "roleType": ["Contract"],
+        "period": ["2021–2023"]
+      },
+      "data": {
+        "role": "Placeholder Role Two",
+        "company": "Placeholder Company B",
+        "period": "2021–2023",
+        "description": "Placeholder description of this role."
+      }
     },
     {
-      "title": "Education",
-      "items": ["Placeholder degree — Institution"]
+      "id": "placeholder-role-3",
+      "facets": {
+        "skill": ["Placeholder Skill A", "Placeholder Skill B"],
+        "roleType": ["Full-time"],
+        "period": ["2019–2021"]
+      },
+      "data": {
+        "role": "Placeholder Role Three",
+        "company": "Placeholder Company C",
+        "period": "2019–2021",
+        "description": "Placeholder description of this role."
+      }
     }
   ]
 }

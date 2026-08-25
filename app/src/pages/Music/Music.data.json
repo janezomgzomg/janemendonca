@@ -1,6 +1,77 @@
 {
   "heading": "Music",
-  "photos": [],
   "links": [],
-  "venues": []
+  "facetDefinitions": [
+    { "key": "type", "label": "Type" },
+    { "key": "venue", "label": "Venue" },
+    { "key": "year", "label": "Year" },
+    { "key": "billing", "label": "Billing" },
+    { "key": "band", "label": "Band", "multiSelect": true }
+  ],
+  "items": [
+    {
+      "id": "placeholder-photo-1",
+      "facets": {
+        "type": ["Photo"],
+        "venue": ["Placeholder Venue A"],
+        "year": ["2025"]
+      },
+      "data": {
+        "type": "photo",
+        "src": "",
+        "alt": "Placeholder photo at Venue A"
+      }
+    },
+    {
+      "id": "placeholder-gig-1",
+      "facets": {
+        "type": ["Gig"],
+        "venue": ["Placeholder Venue A"],
+        "year": ["2025"],
+        "billing": ["Opening Act"],
+        "band": ["Placeholder Band X"]
+      },
+      "data": {
+        "type": "gig",
+        "venue": "Placeholder Venue A",
+        "date": "2025-06-01",
+        "billing": "Opening Act",
+        "bill": ["Placeholder Band X"]
+      }
+    },
+    {
+      "id": "placeholder-gig-2",
+      "facets": {
+        "type": ["Gig"],
+        "venue": ["Placeholder Venue B"],
+        "year": ["2024"],
+        "billing": ["Headlining Act"],
+        "band": []
+      },
+      "data": {
+        "type": "gig",
+        "venue": "Placeholder Venue B",
+        "date": "2024-11-15",
+        "billing": "Headlining Act",
+        "bill": []
+      }
+    },
+    {
+      "id": "placeholder-gig-3",
+      "facets": {
+        "type": ["Gig"],
+        "venue": ["Placeholder Venue A"],
+        "year": ["2025"],
+        "billing": ["Supporting Act"],
+        "band": ["Placeholder Band X", "Placeholder Band Y"]
+      },
+      "data": {
+        "type": "gig",
+        "venue": "Placeholder Venue A",
+        "date": "2025-09-10",
+        "billing": "Supporting Act",
+        "bill": ["Placeholder Band X", "Placeholder Band Y"]
+      }
+    }
+  ]
 }

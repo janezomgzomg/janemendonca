@@ -104,23 +104,69 @@ Content/data for each page is supplied **after** the page shell/component is
 built — pages start with realistic placeholder data and get real content
 filled in per-page.
 
+### 6.1 FacetedBrowser (Resume & Music)
+
+Resume and Music are both presented as a faceted browser — facets in a left
+sidebar, browsable result cards on the right, defaulting to showing every
+item until a facet narrows it down. This doubles as a demonstration of
+search/faceting skills while the visitor learns about Jane.
+
+Built as `app/src/components/FacetedBrowser/`, a **generic, dataset-agnostic
+shell** rather than something specific to Resume or Music:
+
+```ts
+type FacetedItem<T> = { id: string; facets: Record<string, string[]>; data: T };
+type FacetedDataset<T> = { facetDefinitions: { key: string; label: string; multiSelect?: boolean }[]; items: FacetedItem<T>[] };
+```
+
+- `FacetedBrowser.schema.ts` exports a schema **factory**,
+  `facetedDatasetSchema(itemDataSchema)`, that each page composes with its
+  own item shape (e.g. Resume's `experienceEntrySchema`, Music's
+  discriminated-union photo/gig schema) via `.merge(...)`. The page's
+  `.data.json` is natively shaped as `{ facetDefinitions, items }` — there's
+  no separate mapping/adapter layer.
+- `FacetedBrowser` takes `{ dataset, renderResult }` — the page supplies its
+  own result-card rendering, the shell only handles facet computation,
+  selection state, and filtering. This is what makes it reusable across
+  pages with completely different content.
+- **Selection model: classic faceted search.** Categories combine with AND
+  (an item must match every active category) and values within one category
+  combine with OR. Each `FacetDefinition` carries its own `multiSelect` flag
+  (default false): a single-select facet renders as buttons (pick one
+  value, click again to clear); a multi-select facet renders as checkboxes
+  (multiple values OR together, e.g. selecting two skills shows entries
+  matching either). "Clear all filters" resets every active category at
+  once. This arrived in two steps — single-facet-only, then per-category
+  multi-select, then full cross-category AND — each a strict superset of
+  the last, so nothing before it had to be restructured to get here.
+
 ## 7. Pages
 
 ### 7.1 About / bio — `/`
 Short professional/personal intro. Content TBD (placeholder first).
 
 ### 7.2 Resume / experience — `/resume`
-Work history, skills, education. Content TBD (placeholder first).
+Presented as a faceted browser (see §6.1) rather than a static list: each
+work experience entry is a result card, filterable by Role Type and Period
+(single-select) and **Skill** (multi-select — e.g. selecting two skills
+shows every role that used either). Content TBD (placeholder first).
 
 ### 7.3 Music — `/music`
-- Gallery of professional photos
-- Links to external music platforms (Spotify/SoundCloud/etc. — specific
-  links TBD)
-- Detailed list of venues played, with gig/bill history per venue
+- Links to external music platforms (Spotify/SoundCloud/etc.) — a separate,
+  non-faceted list, since links don't fit the browsable-result model
+- Photos and venue/gig history are combined into **one** faceted browser
+  (see §6.1): each photo and each gig is a result card, filterable by:
+  - Type (Photo/Gig), Venue, and Year — single-select
+  - **Billing** (Opening Act / Supporting Act / Headlining Act) —
+    single-select, filters to gigs played in that role
+  - **Band** — multi-select, lists every band shared a bill with; a gig
+    with no other acts (solo headline) simply has no band facet values
+  so filtering to a venue surfaces both the photos taken there and the gigs
+  played there together, and filtering to a band surfaces every gig shared
+  with it regardless of venue.
 
-This is the most data-heavy page; `music.json` will need a structured shape
-for photos, external links, and a venues/gigs list (fields TBD when content
-is supplied).
+Specific link URLs and real photos/gig history are TBD; the shape is
+established, placeholder data demonstrates the faceted browsing itself.
 
 ### 7.4 How this Website was built — `/how-this-was-built`
 Technical writeup: the stack (React/Vite/TypeScript/Tailwind), the
