@@ -1,6 +1,3 @@
-import { z } from 'zod'
+import { documentationPageSchema } from '../../templates/DocumentationPage/DocumentationPage.schema'
 
-export const howThisWasBuiltSchema = z.object({
-  heading: z.string(),
-  body: z.string(),
-})
+export const howThisWasBuiltSchema = documentationPageSchema

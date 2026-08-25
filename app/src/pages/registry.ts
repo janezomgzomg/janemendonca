@@ -1,14 +1,11 @@
 import type { ComponentType } from 'react'
-import About from './About/About'
+import PageRenderingTemplate from '../templates/PageRenderingTemplate/PageRenderingTemplate'
 import { aboutSchema } from './About/About.schema'
 import aboutRawData from './About/About.data.json'
-import Resume from './Resume/Resume'
 import { resumeSchema } from './Resume/Resume.schema'
 import resumeRawData from './Resume/Resume.data.json'
-import Music from './Music/Music'
 import { musicSchema } from './Music/Music.schema'
 import musicRawData from './Music/Music.data.json'
-import HowThisWasBuilt from './HowThisWasBuilt/HowThisWasBuilt'
 import { howThisWasBuiltSchema } from './HowThisWasBuilt/HowThisWasBuilt.schema'
 import howThisWasBuiltRawData from './HowThisWasBuilt/HowThisWasBuilt.data.json'
 
@@ -23,25 +20,25 @@ export const pages: PageConfig[] = [
   {
     path: '/',
     label: 'About',
-    component: About,
+    component: PageRenderingTemplate,
     data: aboutSchema.parse(aboutRawData),
   },
   {
     path: '/resume',
     label: 'Resume',
-    component: Resume,
+    component: PageRenderingTemplate,
     data: resumeSchema.parse(resumeRawData),
   },
   {
     path: '/music',
     label: 'Music',
-    component: Music,
+    component: PageRenderingTemplate,
     data: musicSchema.parse(musicRawData),
   },
   {
     path: '/how-this-was-built',
     label: 'How this was built',
-    component: HowThisWasBuilt,
+    component: PageRenderingTemplate,
     data: howThisWasBuiltSchema.parse(howThisWasBuiltRawData),
   },
 ]

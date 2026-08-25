@@ -1,4 +1,5 @@
 {
+  "template": "search",
   "heading": "Music",
   "links": [],
   "facetDefinitions": [
@@ -17,9 +18,11 @@
         "year": ["2025"]
       },
       "data": {
-        "type": "photo",
-        "src": "",
-        "alt": "Placeholder photo at Venue A"
+        "title": "Placeholder photo at Venue A",
+        "image": {
+          "src": "",
+          "alt": "Placeholder photo at Venue A"
+        }
       }
     },
     {
@@ -32,11 +35,9 @@
         "band": ["Placeholder Band X"]
       },
       "data": {
-        "type": "gig",
-        "venue": "Placeholder Venue A",
-        "date": "2025-06-01",
-        "billing": "Opening Act",
-        "bill": ["Placeholder Band X"]
+        "title": "Placeholder Venue A",
+        "subtitle": "2025-06-01 — Opening Act",
+        "description": "With Placeholder Band X"
       }
     },
     {
@@ -49,11 +50,8 @@
         "band": []
       },
       "data": {
-        "type": "gig",
-        "venue": "Placeholder Venue B",
-        "date": "2024-11-15",
-        "billing": "Headlining Act",
-        "bill": []
+        "title": "Placeholder Venue B",
+        "subtitle": "2024-11-15 — Headlining Act"
       }
     },
     {
@@ -66,11 +64,9 @@
         "band": ["Placeholder Band X", "Placeholder Band Y"]
       },
       "data": {
-        "type": "gig",
-        "venue": "Placeholder Venue A",
-        "date": "2025-09-10",
-        "billing": "Supporting Act",
-        "bill": ["Placeholder Band X", "Placeholder Band Y"]
+        "title": "Placeholder Venue A",
+        "subtitle": "2025-09-10 — Supporting Act",
+        "description": "With Placeholder Band X, Placeholder Band Y"
       }
     }
   ]

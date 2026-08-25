@@ -1,10 +1,3 @@
-import { z } from 'zod'
+import { basicPageSchema } from '../../templates/BasicPage/BasicPage.schema'
 
-export const aboutSchema = z.object({
-  heading: z.string(),
-  photo: z.object({
-    src: z.string(),
-    alt: z.string(),
-  }),
-  paragraphs: z.array(z.string()),
-})
+export const aboutSchema = basicPageSchema

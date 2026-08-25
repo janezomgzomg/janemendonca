@@ -1,0 +1,2 @@
+/* PageRenderingTemplate has no visual output of its own — it only dispatches
+   to a template component, each of which owns its own styles. */

@@ -1,28 +1,28 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Music from './Music'
+import PageRenderingTemplate from '../../templates/PageRenderingTemplate/PageRenderingTemplate'
 import { musicSchema } from './Music.schema'
 import rawData from './Music.data.json'
 
 describe('Music', () => {
   it('shows "Coming soon" for links, since placeholder data has none', () => {
     const data = musicSchema.parse(rawData)
-    render(<Music data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     expect(screen.getByText('Coming soon.')).toBeInTheDocument()
   })
 
   it('renders every photo and gig from valid data', () => {
     const data = musicSchema.parse(rawData)
-    render(<Music data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
-    const photoItems = data.items.filter((item) => item.data.type === 'photo')
-    const gigItems = data.items.filter((item) => item.data.type === 'gig')
+    const photoItems = data.items.filter((item) => item.data.image)
+    const gigItems = data.items.filter((item) => !item.data.image)
 
     for (const item of photoItems) {
-      if (item.data.type === 'photo') {
-        expect(screen.getByText(item.data.alt)).toBeInTheDocument()
+      if (item.data.image) {
+        expect(screen.getByText(item.data.image.alt)).toBeInTheDocument()
       }
     }
 
@@ -34,7 +34,7 @@ describe('Music', () => {
   it('filters to a single venue when its facet is selected', async () => {
     const user = userEvent.setup()
     const data = musicSchema.parse(rawData)
-    render(<Music data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     await user.click(screen.getByRole('button', { name: /Placeholder Venue B \(/ }))
 
@@ -47,7 +47,7 @@ describe('Music', () => {
   it('filters to gigs matching a single-select billing facet', async () => {
     const user = userEvent.setup()
     const data = musicSchema.parse(rawData)
-    render(<Music data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     await user.click(screen.getByRole('button', { name: /Headlining Act \(/ }))
 
@@ -59,7 +59,7 @@ describe('Music', () => {
   it('OR-combines multiple selected bands from the multi-select facet', async () => {
     const user = userEvent.setup()
     const data = musicSchema.parse(rawData)
-    render(<Music data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     await user.click(screen.getByRole('checkbox', { name: /Placeholder Band Y/ }))
     expect(screen.getByText(/2025-09-10/)).toBeInTheDocument()

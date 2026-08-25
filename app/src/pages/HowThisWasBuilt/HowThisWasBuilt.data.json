@@ -1,4 +1,12 @@
 {
+  "template": "documentation",
   "heading": "How this Website was built",
-  "body": "Placeholder writeup — to be replaced with the real technical writeup."
+  "sections": [
+    {
+      "heading": "Overview",
+      "paragraphs": [
+        "Placeholder writeup — to be replaced with the real technical writeup."
+      ]
+    }
+  ]
 }

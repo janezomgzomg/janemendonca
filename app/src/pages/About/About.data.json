@@ -1,8 +1,10 @@
 {
+  "template": "basic",
   "heading": "About",
-  "photo": {
+  "image": {
     "src": "/images/jane-musician.png",
-    "alt": "Jane Mendonca performing on keyboard"
+    "alt": "Jane Mendonca performing on keyboard",
+    "position": "70% 38%"
   },
   "paragraphs": [
     "Hello, I am Jane Mendonca!",

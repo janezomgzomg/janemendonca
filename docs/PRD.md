@@ -120,15 +120,13 @@ type FacetedDataset<T> = { facetDefinitions: { key: string; label: string; multi
 ```
 
 - `FacetedBrowser.schema.ts` exports a schema **factory**,
-  `facetedDatasetSchema(itemDataSchema)`, that each page composes with its
-  own item shape (e.g. Resume's `experienceEntrySchema`, Music's
-  discriminated-union photo/gig schema) via `.merge(...)`. The page's
-  `.data.json` is natively shaped as `{ facetDefinitions, items }` — there's
-  no separate mapping/adapter layer.
-- `FacetedBrowser` takes `{ dataset, renderResult }` — the page supplies its
-  own result-card rendering, the shell only handles facet computation,
-  selection state, and filtering. This is what makes it reusable across
-  pages with completely different content.
+  `facetedDatasetSchema(itemDataSchema)`. `SearchPage` (§6.2) is the only
+  current caller, fixing `itemDataSchema` to one common result shape shared
+  by every search page — see §6.2 for why per-page item shapes were
+  dropped in favor of that.
+- `FacetedBrowser` takes `{ dataset, renderResult }` — generic over the item
+  payload type, so it stays reusable even though `SearchPage` currently
+  only ever calls it with one concrete shape.
 - **Selection model: classic faceted search.** Categories combine with AND
   (an item must match every active category) and values within one category
   combine with OR. Each `FacetDefinition` carries its own `multiSelect` flag
@@ -140,25 +138,85 @@ type FacetedDataset<T> = { facetDefinitions: { key: string; label: string; multi
   multi-select, then full cross-category AND — each a strict superset of
   the last, so nothing before it had to be restructured to get here.
 
+### 6.2 Page Templates
+
+Every page is an instance of one of three reusable templates in
+`app/src/templates/`. Pages have **no `.tsx` or `.css` of their own** —
+a page folder is just `.schema.ts` + `.types.ts` + `.data.json` + `.test.tsx`.
+Rendering is fully centralized:
+
+- Each page's `data.json` carries a `template: "basic" | "search" |
+  "documentation"` discriminator.
+- `templates/PageRenderingTemplate/` is the **one component the route
+  registry ever references** (`registry.ts`'s `component` field is
+  `PageRenderingTemplate` for all four routes). It switches on
+  `page.template` and renders the matching template component. Its schema,
+  `pageSchema`, is a `z.discriminatedUnion('template', [...])` over the
+  three template schemas below.
+- A page's own `.schema.ts` is just a re-export (or a small `.extend(...)`)
+  of whichever template schema it uses — e.g. `export const aboutSchema =
+  basicPageSchema`. No page-specific TypeScript rendering logic exists
+  anywhere; adding a page means adding a data file and a schema re-export,
+  nothing else.
+
+The three templates:
+
+- **BasicPage** — title, image, block of text.
+  `{ template: "basic", heading, image: { src, alt, position? },
+  paragraphs: string[] }`. `position` is an optional CSS `object-position`
+  value for off-center subjects; defaults to centered. Used by **About**.
+- **SearchPage** — heading + the faceted browse experience from §6.1, plus
+  optional `links`. `{ template: "search", heading, links?: { label, url
+  }[], facetDefinitions, items }`. Used by **Resume** (no `links`) and
+  **Music** (`links` present — `[]` renders "Coming soon.").
+- **DocumentationPage** — heading plus an array of sections, each with its
+  own sub-heading and paragraphs: `{ template: "documentation", heading,
+  sections: { heading, paragraphs: string[] }[] }`. Used by **How this
+  Website was built**.
+
+**Commonized search results.** Every `SearchPage` item's `data` conforms to
+one shape — `{ title, subtitle?, description?, image?: { src, alt } }` —
+rendered by a single built-in card component inside `SearchPage`, not a
+per-page `renderResult` function. `image` present renders an image card (a
+placeholder box using `alt` as caption when `src` is empty, e.g. Music's
+photo before a real asset exists); otherwise a text card. This was a
+deliberate trade: Resume's experience entries and Music's photo/gig entries
+used to have distinct, richly-typed shapes (`role`/`company`/`period` vs.
+a `type: 'photo' | 'gig'` discriminated union) rendered by page-specific
+JSX. Commonizing to one shape means every page's content already fits the
+generic renderer — e.g. a gig's `subtitle` is the pre-formatted string
+`"2025-06-01 — Opening Act"` rather than separate `date`/`billing` fields
+composed at render time — in exchange for zero custom rendering code per
+page. Faceting itself is unaffected: filtering still runs on `facets`,
+which is independent of how `data` is shaped for display.
+
+Templates never own content (no `.data.json`) — same rule as any
+component that's prop/data-driven rather than content-owning (see §6).
+They do own their schema, types, styles (except `PageRenderingTemplate`,
+which renders nothing of its own), and tests, tested with synthetic sample
+data rather than a real page's content.
+
 ## 7. Pages
 
 ### 7.1 About / bio — `/` — **content finalized**
-A circular photo (`public/images/jane-musician.png`, a live performance
-shot, cropped/positioned via CSS to center on her face) alongside a
-real bio in three paragraphs: an introduction, her frontend engineering
-background, and her work as a multi-instrumentalist (Right Proper, Gamelan
-Sekar Jaya, SingJam/Sacred Music Fellowship). Data shape:
-`{ heading, photo: { src, alt }, paragraphs: string[] }`.
+A **BasicPage** (§6.2). Photo is `public/images/jane-musician.png`, a live
+performance shot, framed off-center via `image.position` to center on her
+face rather than the image's geometric center. Real bio across four
+paragraphs: an introduction, her frontend engineering background, her work
+as a multi-instrumentalist (Right Proper, Gamelan Sekar Jaya, SingJam/Sacred
+Music Fellowship), and hobbies.
 
 ### 7.2 Resume / experience — `/resume`
-Presented as a faceted browser (see §6.1) rather than a static list: each
-work experience entry is a result card, filterable by Role Type and Period
-(single-select) and **Skill** (multi-select — e.g. selecting two skills
-shows every role that used either). Content TBD (placeholder first).
+A **SearchPage** (§6.2): each work experience entry is a result card,
+filterable by Role Type and Period (single-select) and **Skill**
+(multi-select — e.g. selecting two skills shows every role that used
+either). Content TBD (placeholder first).
 
 ### 7.3 Music — `/music`
+A **SearchPage** (§6.2) using the optional `links` field.
 - Links to external music platforms (Spotify/SoundCloud/etc.) — a separate,
-  non-faceted list, since links don't fit the browsable-result model
+  non-faceted list via `SearchPage`'s `links` field, since links don't fit
+  the browsable-result model
 - Photos and venue/gig history are combined into **one** faceted browser
   (see §6.1): each photo and each gig is a result card, filterable by:
   - Type (Photo/Gig), Venue, and Year — single-select
@@ -174,9 +232,10 @@ Specific link URLs and real photos/gig history are TBD; the shape is
 established, placeholder data demonstrates the faceted browsing itself.
 
 ### 7.4 How this Website was built — `/how-this-was-built`
-Technical writeup: the stack (React/Vite/TypeScript/Tailwind), the
-schema-driven page architecture, and the GitHub Actions → GitHub Pages
-deployment pipeline. Effectively documents this exact project.
+A **DocumentationPage** (§6.2): technical writeup as a series of sections
+(stack, schema-driven page architecture, page templates, the GitHub Actions
+→ GitHub Pages deployment pipeline). Effectively documents this exact
+project. Content TBD (placeholder first, single "Overview" section).
 
 ## 8. Design
 

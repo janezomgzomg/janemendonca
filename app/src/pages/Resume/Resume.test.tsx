@@ -1,14 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Resume from './Resume'
+import PageRenderingTemplate from '../../templates/PageRenderingTemplate/PageRenderingTemplate'
 import { resumeSchema } from './Resume.schema'
 import rawData from './Resume.data.json'
 
 describe('Resume', () => {
   it('renders heading and every experience entry from valid data', () => {
     const data = resumeSchema.parse(rawData)
-    render(<Resume data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     expect(
       screen.getByRole('heading', { level: 1, name: data.heading }),
@@ -16,7 +16,7 @@ describe('Resume', () => {
 
     for (const item of data.items) {
       expect(
-        screen.getByRole('heading', { level: 3, name: item.data.role }),
+        screen.getByRole('heading', { level: 3, name: item.data.title }),
       ).toBeInTheDocument()
     }
   })
@@ -24,7 +24,7 @@ describe('Resume', () => {
   it('filters experience entries via the multi-select skill facet', async () => {
     const user = userEvent.setup()
     const data = resumeSchema.parse(rawData)
-    render(<Resume data={data} />)
+    render(<PageRenderingTemplate data={data} />)
 
     await user.click(screen.getByRole('checkbox', { name: /Placeholder Skill A \(/ }))
 
@@ -37,12 +37,12 @@ describe('Resume', () => {
 
     for (const item of skillAItems) {
       expect(
-        screen.getByRole('heading', { level: 3, name: item.data.role }),
+        screen.getByRole('heading', { level: 3, name: item.data.title }),
       ).toBeInTheDocument()
     }
     for (const item of otherItems) {
       expect(
-        screen.queryByRole('heading', { level: 3, name: item.data.role }),
+        screen.queryByRole('heading', { level: 3, name: item.data.title }),
       ).not.toBeInTheDocument()
     }
 
@@ -50,7 +50,7 @@ describe('Resume', () => {
     await user.click(screen.getByRole('checkbox', { name: /Placeholder Skill B \(/ }))
     for (const item of data.items) {
       expect(
-        screen.getByRole('heading', { level: 3, name: item.data.role }),
+        screen.getByRole('heading', { level: 3, name: item.data.title }),
       ).toBeInTheDocument()
     }
   })
