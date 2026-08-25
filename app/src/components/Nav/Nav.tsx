@@ -4,12 +4,24 @@ import './Nav.css'
 
 export default function Nav({ items }: { items: NavItem[] }) {
   return (
-    <nav className="flex gap-4 p-4">
-      {items.map((item) => (
-        <NavLink key={item.path} to={item.path} end={item.path === '/'}>
-          {item.label}
-        </NavLink>
-      ))}
+    <nav>
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm sm:gap-x-6">
+        {items.map((item) => (
+          <li key={item.path} className="whitespace-nowrap">
+            <NavLink
+              to={item.path}
+              end={item.path === '/'}
+              className={({ isActive }) =>
+                isActive
+                  ? 'font-medium text-accent no-underline'
+                  : 'text-ink/70 no-underline hover:text-ink'
+              }
+            >
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
     </nav>
   )
 }
