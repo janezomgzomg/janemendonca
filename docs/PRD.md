@@ -230,11 +230,25 @@ The three templates (data shape each page's `.schema.ts` composes):
   itself).
 
 **Commonized search results.** Every `SearchPage` item's `data` conforms to
-one shape — `{ title, subtitle?, description?, image?: { src, alt } }` —
-rendered by a single built-in card component inside `SearchPage`, not a
-per-page `renderResult` function. `image` present renders an image card (a
-placeholder box using `alt` as caption when `src` is empty, e.g. Music's
-photo before a real asset exists); otherwise a text card. This was a
+one shape — `{ title, subtitle?, description?, skillTags?: string[],
+skillTagsLabel?: string, bullets?: string[], bulletsLabel?: string,
+image?: { src, alt } }` — rendered by a single built-in card component
+inside `SearchPage`, not a per-page `renderResult` function. `image`
+present renders an image card (a placeholder box using `alt` as caption
+when `src` is empty, e.g. Music's photo before a real asset exists);
+otherwise a text card. Card body order: `description`, then `skillTags` (a
+row of small chips — light blue background, 6px border radius — under a
+`skillTagsLabel` heading, default `"Skills"`), then `bullets` (a
+collapsible native `<details>`/`<summary>`, closed by default so a list of
+several dense roles stays scannable, with `bulletsLabel` as the
+`<summary>` text — `"Role & Responsibilities"` for Resume). Both labels
+are page-supplied rather than hardcoded into the shared card, since a
+future page reusing these fields for something else might want different
+wording. `skillTags` is deliberately distinct from `facets.skill`: the
+facet uses coarse categories sized for usable filtering (few, broad
+values), while `skillTags` shows the specific granular technologies per
+role purely for display — showing both would be redundant if they held
+the same values. This was a
 deliberate trade: Resume's experience entries and Music's photo/gig entries
 used to have distinct, richly-typed shapes (`role`/`company`/`period` vs.
 a `type: 'photo' | 'gig'` discriminated union) rendered by page-specific
@@ -262,13 +276,18 @@ paragraphs: an introduction, her frontend engineering background, her work
 as a multi-instrumentalist (Right Proper, Gamelan Sekar Jaya, SingJam/Sacred
 Music Fellowship), and hobbies.
 
-### 7.2 Resume / experience — `/resume` — **links finalized**
-A **SearchPage** (§6.2): each work experience entry is a result card,
-filterable by Role Type and Period (single-select) and **Skill**
-(multi-select — e.g. selecting two skills shows every role that used
-either). `links` holds LinkedIn and GitHub — the two profiles relevant to
-engineering work, distinct from Music's Instagram (§7.3). Experience
-content itself TBD (placeholder first).
+### 7.2 Resume / experience — `/resume` — **content finalized**
+A **SearchPage** (§6.2). Four real roles (Senior Software Engineer, UI
+Engineer, and UI Engineer (Contract) at Lucidworks, plus Intern & Engineer
+at Honeywell Technology Solutions Lab), each a result card with real
+achievement bullets via the `bullets` field. Filterable by Role Type,
+Location, and Period (single-select), and **Skill** (multi-select — seven
+broad categories, e.g. "Search & AI-Powered Search", "Leadership",
+curated from Jane's own skill list rather than one tag per specific
+technology, since 30+ near-unique tags across only four roles would make
+for a sparse, not-useful facet). `links` holds LinkedIn and GitHub — the
+two profiles relevant to engineering work, distinct from Music's Instagram
+(§7.3).
 
 ### 7.3 Music — `/music` — **links finalized**
 A **SearchPage** (§6.2) using the optional `links` field, set to her

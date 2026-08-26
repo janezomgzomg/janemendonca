@@ -11,6 +11,19 @@ export const searchResultDataSchema = z.object({
   title: z.string(),
   subtitle: z.string().optional(),
   description: z.string().optional(),
+  // A list of achievement/detail bullets (e.g. Resume's job responsibilities)
+  // — kept distinct from `description` so a card can render a real bulleted
+  // list rather than one run-on paragraph. Rendered as a collapsible
+  // <details>; `bulletsLabel` is the <summary> text (page-supplied since
+  // the right label — "Role & Responsibilities" for Resume — isn't
+  // something a shared card should hardcode).
+  bullets: z.array(z.string()).optional(),
+  bulletsLabel: z.string().optional(),
+  // A row of small tag chips (e.g. Resume's specific technologies per
+  // role) — distinct from `facets.skill`, which uses coarser categories
+  // for filtering. This is purely for display.
+  skillTags: z.array(z.string()).optional(),
+  skillTagsLabel: z.string().optional(),
   image: z
     .object({
       src: z.string(),

@@ -8,46 +8,165 @@
   "facetDefinitions": [
     { "key": "skill", "label": "Skill", "multiSelect": true },
     { "key": "roleType", "label": "Role Type" },
+    { "key": "location", "label": "Location" },
     { "key": "period", "label": "Period" }
   ],
   "items": [
     {
-      "id": "placeholder-role-1",
+      "id": "lucidworks-senior-swe",
       "facets": {
-        "skill": ["Placeholder Skill A"],
+        "skill": [
+          "AI-assisted Development",
+          "Languages & Frameworks",
+          "Architecture & Systems",
+          "Engineering Practice",
+          "Leadership",
+          "Search & AI-Powered Search",
+          "Tooling"
+        ],
         "roleType": ["Full-time"],
-        "period": ["2023–Present"]
+        "location": ["San Francisco"],
+        "period": ["Feb 2022 – Jul 2026"]
       },
       "data": {
-        "title": "Placeholder Role One",
-        "subtitle": "Placeholder Company A — 2023–Present",
-        "description": "Placeholder description of this role."
+        "title": "Senior Software Engineer",
+        "subtitle": "Lucidworks — San Francisco — Feb 2022 – Jul 2026",
+        "bulletsLabel": "Role & Responsibilities",
+        "bullets": [
+          "Developed SaaS and on-Prem Fusion Admin UI features using StencilJS, TypeScript, and SCSS, delivering a unified user experience across platforms and reducing UI inconsistencies",
+          "Built AI-powered search and recommendation UI components including configuration screens and result views, enabling faster configuration of AI features for end users",
+          "Enabled adoption of Claude Code and Claude Skills, authoring reusable prompt templates and reviewing AI-generated code before release, which cut component development time and improved code quality across the engineering team",
+          "Extended the frontend component library and design system across ten micro-frontend repositories, standardizing reusable components and improving UI consistency, which lowered maintenance effort",
+          "Leveraged deep knowledge of backend data models to partner with API engineers, refining API contracts to fully meet product requirements, resulting in smoother feature integration and fewer post-release bugs",
+          "Operated in a Kubernetes and Docker deployment environment on Google Cloud Platform, enabling reliable SaaS releases and reducing deployment incidents",
+          "Led the Fusion Admin UI roadmap and technical-debt management, applying first-principles thinking to prioritize and resolve a multi-year backlog, which streamlined releases and improved UI stability",
+          "Provided domain knowledge and technical direction across all frontend squads while owning a key product area, resulting in consistent implementation patterns and faster feature delivery",
+          "Led cross-team initiatives to standardize frontend architecture, frameworks, and best practices, enforcing code quality, PR review, and documentation standards, which increased code consistency and reduced review cycle time",
+          "Conducted technical interviews with hiring decisions instrumental in building nearly the entire frontend team",
+          "Collaborated with UX/UI designers using Figma to turn design intent into functional, production-ready features, and identified and closed multiple capability gaps, reducing feature delivery time",
+          "Completed Lucidworks' internal mentorship program as a mentee in 2024 and then mentored junior and senior frontend engineers which raised code quality and accelerated onboarding for new team members"
+        ],
+        "skillTags": [
+          "StencilJS",
+          "TypeScript",
+          "SCSS",
+          "AI-powered Search UI",
+          "Claude Code",
+          "Claude Skills authorship",
+          "Prompt Engineering",
+          "Design System & Component Library Architecture",
+          "Data Modeling",
+          "Kubernetes",
+          "Docker",
+          "Google Cloud Platform",
+          "Technical Direction",
+          "Code Quality & PR Review Standards",
+          "Technical Interviewing & Hiring",
+          "Figma",
+          "Structured Mentorship"
+        ]
       }
     },
     {
-      "id": "placeholder-role-2",
+      "id": "lucidworks-ui-engineer",
       "facets": {
-        "skill": ["Placeholder Skill B"],
+        "skill": [
+          "Languages & Frameworks",
+          "Architecture & Systems",
+          "Engineering Practice",
+          "Leadership",
+          "Tooling"
+        ],
+        "roleType": ["Full-time"],
+        "location": ["San Francisco"],
+        "period": ["Nov 2017 – Feb 2022"]
+      },
+      "data": {
+        "title": "UI Engineer",
+        "subtitle": "Lucidworks — San Francisco — Nov 2017 – Feb 2022",
+        "bulletsLabel": "Role & Responsibilities",
+        "bullets": [
+          "Transitioned the UI codebase from AngularJS, JavaScript, and SCSS to StencilJS, TypeScript, and SCSS, introducing new architectural and state-management patterns that enabled framework-agnostic component reuse across the shared web component library, reducing duplication and speeding up new feature development",
+          "Owned the full frontend engineering lifecycle for the Fusion Admin UI, from concept through post-QE feedback, and contributed code to almost every shipped feature, which helped deliver releases on schedule and maintain consistent UI quality",
+          "Built a data-model mapping designer and a custom UI error-logging and observability service using TypeScript and Web Components, providing developers with clear error insights that cut debugging time",
+          "Implemented and maintained SonarQube quality-gate tooling in the frontend pipeline, ensuring code met quality standards and decreasing critical issues by improving early detection",
+          "Accelerated development across multiple SaaS projects by temporarily joining frontend teams, removing technical blockers, and delivering key features on schedule",
+          "Helped design and implement the organization's feature-flag governance model through an engineering process council, later adopted org-wide",
+          "Mentored junior frontend engineers across squads on code practices, Pull Request hygiene, and documentation, which improved code quality and reduced review cycle time by fostering consistent engineering processes",
+          "Collaborated closely with Product, Design, Backend, and Quality Engineering teams to align feature requirements and testing strategies, resulting in smoother releases and fewer integration issues",
+          "Flagged feature capability and design gaps and delivered actionable suggestions, helping the team address critical issues before development and improving overall product readiness",
+          "Documented, shared, and maintained technical guides for engineers using Markdown and internal wikis, which increased onboarding efficiency and reduced knowledge-transfer delays"
+        ],
+        "skillTags": [
+          "AngularJS",
+          "StencilJS",
+          "TypeScript",
+          "SCSS",
+          "Web Components",
+          "Reactive UI Architecture",
+          "Data Modeling",
+          "Systems Design",
+          "SonarQube / Quality Gates",
+          "Feature Flag Governance",
+          "Engineering Process Design",
+          "Structured Mentorship",
+          "Cross-team Enablement",
+          "Software & Technical Documentation"
+        ]
+      }
+    },
+    {
+      "id": "lucidworks-ui-engineer-dubai-contract",
+      "facets": {
+        "skill": [
+          "Languages & Frameworks",
+          "Search & AI-Powered Search",
+          "Tooling",
+          "Engineering Practice"
+        ],
         "roleType": ["Contract"],
-        "period": ["2021–2023"]
+        "location": ["Dubai"],
+        "period": ["Sep 2014 – Nov 2017"]
       },
       "data": {
-        "title": "Placeholder Role Two",
-        "subtitle": "Placeholder Company B — 2021–2023",
-        "description": "Placeholder description of this role."
+        "title": "UI Engineer (Contract)",
+        "subtitle": "Lucidworks — Dubai (Remote) — Sep 2014 – Nov 2017",
+        "bulletsLabel": "Role & Responsibilities",
+        "bullets": [
+          "Developed Fusion Admin UI (v1.2+) using Angular 1.2+ and SCSS, enabling faster configuration of admin panels and reducing UI bugs",
+          "Led development of Query Workbench and Search UI, a reactive pipeline configuration tool that let engineers preview live query changes and compare results with production output, improving debugging efficiency and supporting faceting features",
+          "Built UI components for search-domain elements such as data sources, connectors, pipelines, and profiles, supporting ingestion, indexing, and querying workflows and streamlining user interactions",
+          "Integrated UI features with Fusion and Solr APIs using mocked data stores resulting in quicker delivery times and increased feature reliability",
+          "Advanced from following specs to defining frontend integration requirements and architecture decisions, bridging UI design and engineering and mentoring junior developers through structured mentorship",
+          "Collaborated with Product, Design, Core Engineering, and Quality Engineering teams, using GitHub Actions, SonarQube, and Jenkins to set up automated unit and integration testing and code-style checks, which delivered higher-quality software faster"
+        ],
+        "skillTags": [
+          "AngularJS",
+          "SCSS",
+          "Reactive UI Architecture",
+          "Solr Query/Pipeline Configuration",
+          "Result-diffing/Comparison Tooling",
+          "Jenkins"
+        ]
       }
     },
     {
-      "id": "placeholder-role-3",
+      "id": "honeywell-intern-engineer",
       "facets": {
-        "skill": ["Placeholder Skill A", "Placeholder Skill B"],
+        "skill": ["Languages & Frameworks"],
         "roleType": ["Full-time"],
-        "period": ["2019–2021"]
+        "location": ["Bengaluru"],
+        "period": ["Dec 2011 – Sep 2014"]
       },
       "data": {
-        "title": "Placeholder Role Three",
-        "subtitle": "Placeholder Company C — 2019–2021",
-        "description": "Placeholder description of this role."
+        "title": "Intern & Engineer",
+        "subtitle": "Honeywell Technology Solutions Lab — Bengaluru — Dec 2011 – Sep 2014",
+        "bulletsLabel": "Role & Responsibilities",
+        "bullets": [
+          "Developed the HTML5 proof-of-concept for a remote web server supporting a home-security system, using CSS and JavaScript; later adopted as the foundation for the subsequent Engineer role. Code was shipped to production in the EMEA region",
+          "Created an original in-house comic strip to illustrate process-improvement concepts and designed recognition cards that encouraged team members to apply the concepts, resulting in increased adoption of the new processes across the team"
+        ],
+        "skillTags": ["HTML5", "CSS3", "JavaScript", "jQuery"]
       }
     }
   ]

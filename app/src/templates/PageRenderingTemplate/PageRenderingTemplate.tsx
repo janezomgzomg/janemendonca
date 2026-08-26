@@ -81,6 +81,35 @@ function SearchResultCard({ data }: { data: SearchResultData }) {
       <h3 className="font-display text-lg font-medium">{data.title}</h3>
       {data.subtitle && <p className="text-sm text-ink/70">{data.subtitle}</p>}
       {data.description && <p className="mt-1">{data.description}</p>}
+      {data.skillTags && data.skillTags.length > 0 && (
+        <div className="mt-2">
+          <p className="text-sm font-medium text-ink/70">
+            {data.skillTagsLabel ?? 'Skills'}
+          </p>
+          <div className="mt-1 flex flex-wrap gap-1.5">
+            {data.skillTags.map((skill, index) => (
+              <span
+                key={index}
+                className="rounded-md bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      {data.bullets && (
+        <details className="mt-2">
+          <summary className="cursor-pointer text-sm font-medium text-ink/70 hover:text-ink">
+            {data.bulletsLabel ?? 'Details'}
+          </summary>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {data.bullets.map((bullet, index) => (
+              <li key={index}>{bullet}</li>
+            ))}
+          </ul>
+        </details>
+      )}
     </article>
   )
 }
