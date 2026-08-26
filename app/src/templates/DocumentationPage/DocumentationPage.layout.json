@@ -1,3 +1,4 @@
 [
+  { "kind": "linkList", "field": "links" },
   { "kind": "sectionList", "field": "sections" }
 ]

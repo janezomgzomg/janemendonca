@@ -1,7 +1,9 @@
 {
   "template": "search",
   "heading": "Music",
-  "links": [],
+  "links": [
+    { "label": "Instagram", "url": "https://www.instagram.com/janemendoncakeys/", "icon": "instagram" }
+  ],
   "facetDefinitions": [
     { "key": "type", "label": "Type" },
     { "key": "venue", "label": "Venue" },

@@ -6,11 +6,16 @@ import { musicSchema } from './Music.schema'
 import rawData from './Music.data.json'
 
 describe('Music', () => {
-  it('shows "Coming soon" for links, since placeholder data has none', () => {
+  it('renders the Instagram link', () => {
     const data = musicSchema.parse(rawData)
     render(<PageRenderingTemplate data={data} />)
 
-    expect(screen.getByText('Coming soon.')).toBeInTheDocument()
+    const instagram = screen.getByRole('link', { name: 'Instagram' })
+    expect(instagram).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/janemendoncakeys/',
+    )
+    expect(instagram).toHaveAttribute('target', '_blank')
   })
 
   it('renders every photo and gig from valid data', () => {

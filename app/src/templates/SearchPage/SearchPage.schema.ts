@@ -1,10 +1,6 @@
 import { z } from 'zod'
 import { facetedDatasetSchema } from '../../components/FacetedBrowser/FacetedBrowser.schema'
-
-const searchLinkSchema = z.object({
-  label: z.string(),
-  url: z.string(),
-})
+import { pageLinkSchema } from '../pageLink.schema'
 
 // Every search result, across every page, conforms to this one shape so
 // SearchPage can render results with a single built-in card renderer
@@ -28,5 +24,5 @@ export const searchPageSchema = facetedDatasetSchema(searchResultDataSchema).ext
   heading: z.string(),
   // Optional supplementary links (e.g. Music's external platform links).
   // Omitted entirely for pages with nothing to link to (e.g. Resume).
-  links: z.array(searchLinkSchema).optional(),
+  links: z.array(pageLinkSchema).optional(),
 })

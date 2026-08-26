@@ -63,10 +63,10 @@ describe('PageRenderingTemplate', () => {
       expect(screen.getByRole('heading', { name: 'Fruits' })).toBeInTheDocument()
       expect(screen.getByText('Apple')).toBeInTheDocument()
       expect(screen.getByText('Lime')).toBeInTheDocument()
-      expect(screen.queryByText('Links')).not.toBeInTheDocument()
+      expect(screen.queryByRole('link')).not.toBeInTheDocument()
     })
 
-    it('renders a Links section when links is present, "Coming soon" when empty', () => {
+    it('renders nothing for an empty links array', () => {
       const data = pageSchema.parse({
         template: 'search',
         heading: 'Fruits',
@@ -77,25 +77,26 @@ describe('PageRenderingTemplate', () => {
 
       render(<PageRenderingTemplate data={data} />)
 
-      expect(screen.getByRole('heading', { name: 'Links' })).toBeInTheDocument()
-      expect(screen.getByText('Coming soon.')).toBeInTheDocument()
+      expect(screen.queryByRole('link')).not.toBeInTheDocument()
     })
 
-    it('renders populated links as anchors', () => {
+    it('renders populated links as icon anchors that open in a new tab', () => {
       const data = pageSchema.parse({
         template: 'search',
         heading: 'Fruits',
-        links: [{ label: 'Store', url: 'https://example.com' }],
+        links: [
+          { label: 'GitHub', url: 'https://example.com', icon: 'github' },
+        ],
         facetDefinitions: [],
         items: [],
       })
 
       render(<PageRenderingTemplate data={data} />)
 
-      expect(screen.getByRole('link', { name: 'Store' })).toHaveAttribute(
-        'href',
-        'https://example.com',
-      )
+      const link = screen.getByRole('link', { name: 'GitHub' })
+      expect(link).toHaveAttribute('href', 'https://example.com')
+      expect(link).toHaveAttribute('target', '_blank')
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer')
     })
 
     it('renders subtitle and description when present on a result', () => {
@@ -164,10 +165,18 @@ describe('PageRenderingTemplate', () => {
   })
 
   describe('documentation template', () => {
-    it('renders the heading and every section with its paragraphs', () => {
+    it('renders the heading and every section with its content blocks', () => {
       const sections = [
-        { heading: 'Stack', paragraphs: ['React and Vite.'] },
-        { heading: 'Deployment', paragraphs: ['GitHub Actions to gh-pages.'] },
+        {
+          heading: 'Stack',
+          content: [{ kind: 'paragraph' as const, text: 'React and Vite.' }],
+        },
+        {
+          heading: 'Deployment',
+          content: [
+            { kind: 'paragraph' as const, text: 'GitHub Actions to gh-pages.' },
+          ],
+        },
       ]
       const data = pageSchema.parse({
         template: 'documentation',
@@ -185,10 +194,57 @@ describe('PageRenderingTemplate', () => {
         expect(
           screen.getByRole('heading', { level: 2, name: section.heading }),
         ).toBeInTheDocument()
-        for (const paragraph of section.paragraphs) {
-          expect(screen.getByText(paragraph)).toBeInTheDocument()
+        for (const block of section.content) {
+          expect(screen.getByText(block.text)).toBeInTheDocument()
         }
       }
+    })
+
+    it('renders a code block as <pre><code>, with its language label', () => {
+      const data = pageSchema.parse({
+        template: 'documentation',
+        heading: 'How this was built',
+        sections: [
+          {
+            heading: 'Stack',
+            content: [
+              {
+                kind: 'code',
+                language: 'ts',
+                code: 'type X = { a: string }',
+              },
+            ],
+          },
+        ],
+      })
+
+      render(<PageRenderingTemplate data={data} />)
+
+      expect(screen.getByText('ts')).toBeInTheDocument()
+      const code = screen.getByText('type X = { a: string }')
+      expect(code.tagName).toBe('CODE')
+      expect(code.closest('pre')).not.toBeNull()
+    })
+
+    it('renders a links section inline with the heading, same as search pages', () => {
+      const data = pageSchema.parse({
+        template: 'documentation',
+        heading: 'How this was built',
+        links: [
+          {
+            label: 'View Source on GitHub',
+            url: 'https://github.com/example/example',
+            icon: 'github',
+          },
+        ],
+        sections: [],
+      })
+
+      render(<PageRenderingTemplate data={data} />)
+
+      const link = screen.getByRole('link', { name: 'View Source on GitHub' })
+      expect(link).toHaveAttribute('href', 'https://github.com/example/example')
+      expect(link).toHaveAttribute('target', '_blank')
     })
   })
 })

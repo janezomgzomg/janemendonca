@@ -182,17 +182,36 @@ it). Rendering is fully centralized:
 - Current section kinds, each a case in `renderSection`:
   - `imageWithText` (`imageField`, `textField`) — **BasicPage**'s layout:
     `[{ kind: "imageWithText", imageField: "image", textField: "paragraphs" }]`
-  - `linkList` (`field`) — renders "Coming soon." when the field is an
-    empty array, an anchor list when populated, nothing when the field is
-    absent from the page's data entirely
+  - `linkList` (`field`) — renders nothing when the field is absent or an
+    empty array. When populated, renders as **icon-only anchors positioned
+    inline with the page's `<h1>`, right-aligned on the same row** (pulled
+    out of the normal top-to-bottom section sequence specifically for this
+    reason — `PageRenderingTemplate` hoists whichever section has
+    `kind: "linkList"` into the heading row before rendering the rest).
+    Each link's icon is explicit in the data (`icon: "linkedin" | "github"
+    | "instagram"` on `pageLinkSchema`, defined once in
+    `templates/pageLink.schema.ts` and shared by both `SearchPage` and
+    `DocumentationPage` — living outside either so both can import it
+    without a circular dependency through `PageRenderingTemplate.schema.ts`,
+    which imports both), not inferred from `label` text. Every link opens
+    in a new tab (`target="_blank"`, `rel="noopener noreferrer"`); `label`
+    becomes the accessible name via `aria-label` (and a hover `title`)
+    since there's no visible text.
   - `facetedSearch` (`facetsField`, `itemsField`) — renders `FacetedBrowser`
     (§6.1) off those two fields, using the commonized result shape below
   - `sectionList` (`field`) — **DocumentationPage**'s layout:
-    `[{ kind: "sectionList", field: "sections" }]`
-  - **SearchPage**'s layout is `linkList` then `facetedSearch`:
-    `[{ kind: "linkList", field: "links" }, { kind: "facetedSearch",
-    facetsField: "facetDefinitions", itemsField: "items" }]` — Resume's data
-    simply omits `links`, so that section renders nothing for it.
+    `[{ kind: "linkList", field: "links" }, { kind: "sectionList", field:
+    "sections" }]`. Each section's body is an ordered list of **content
+    blocks** rather than just paragraphs — `{ kind: "paragraph"; text:
+    string } | { kind: "code"; code: string; language?: string }` — so
+    prose and code can interleave within one section. A `code` block
+    renders as `<pre><code>` (an optional freeform `language` label shown
+    above it, e.g. `"ts"` or a file path — no syntax highlighting, just a
+    hint of what's shown) with `overflow-x-auto` so a wide folder tree
+    scrolls inside its own box rather than breaking page layout.
+  - Both **SearchPage** and **DocumentationPage** put `linkList` first in
+    their layout: `[{ kind: "linkList", field: "links" }, ...]` — Resume's
+    data simply omits `links`, so nothing renders in the heading row for it.
 
 The three templates (data shape each page's `.schema.ts` composes):
 
@@ -200,13 +219,15 @@ The three templates (data shape each page's `.schema.ts` composes):
   position? }, paragraphs: string[] }`. `position` is an optional CSS
   `object-position` value for off-center subjects; defaults to centered.
   Used by **About**.
-- **SearchPage** — `{ template: "search", heading, links?: { label, url
-  }[], facetDefinitions, items }` — heading plus the faceted browse
-  experience from §6.1, plus optional links. Used by **Resume** (no
-  `links`) and **Music** (`links` present — `[]` renders "Coming soon.").
-- **DocumentationPage** — `{ template: "documentation", heading, sections:
-  { heading, paragraphs: string[] }[] }`. Used by **How this Website was
-  built**.
+- **SearchPage** — `{ template: "search", heading, links?:
+  PageLink[], facetDefinitions, items }` — heading plus the faceted browse
+  experience from §6.1, plus optional links. Used by **Resume** (LinkedIn,
+  GitHub) and **Music** (Instagram).
+- **DocumentationPage** — `{ template: "documentation", heading, links?:
+  PageLink[], sections: { heading, content: ContentBlock[] }[] }`. Used by
+  **How this Website was built** (links to its own GitHub repo; sections
+  mix prose with real code/folder-structure blocks describing the project
+  itself).
 
 **Commonized search results.** Every `SearchPage` item's `data` conforms to
 one shape — `{ title, subtitle?, description?, image?: { src, alt } }` —
@@ -241,17 +262,19 @@ paragraphs: an introduction, her frontend engineering background, her work
 as a multi-instrumentalist (Right Proper, Gamelan Sekar Jaya, SingJam/Sacred
 Music Fellowship), and hobbies.
 
-### 7.2 Resume / experience — `/resume`
+### 7.2 Resume / experience — `/resume` — **links finalized**
 A **SearchPage** (§6.2): each work experience entry is a result card,
 filterable by Role Type and Period (single-select) and **Skill**
 (multi-select — e.g. selecting two skills shows every role that used
-either). Content TBD (placeholder first).
+either). `links` holds LinkedIn and GitHub — the two profiles relevant to
+engineering work, distinct from Music's Instagram (§7.3). Experience
+content itself TBD (placeholder first).
 
-### 7.3 Music — `/music`
-A **SearchPage** (§6.2) using the optional `links` field.
-- Links to external music platforms (Spotify/SoundCloud/etc.) — a separate,
-  non-faceted list via `SearchPage`'s `links` field, since links don't fit
-  the browsable-result model
+### 7.3 Music — `/music` — **links finalized**
+A **SearchPage** (§6.2) using the optional `links` field, set to her
+Instagram profile — the split (LinkedIn/GitHub on Resume, Instagram here)
+makes which links relate to engineering vs. music evident from page
+context alone, with no extra grouping/labeling needed.
 - Photos and venue/gig history are combined into **one** faceted browser
   (see §6.1): each photo and each gig is a result card, filterable by:
   - Type (Photo/Gig), Venue, and Year — single-select
@@ -263,14 +286,16 @@ A **SearchPage** (§6.2) using the optional `links` field.
   played there together, and filtering to a band surfaces every gig shared
   with it regardless of venue.
 
-Specific link URLs and real photos/gig history are TBD; the shape is
-established, placeholder data demonstrates the faceted browsing itself.
+Real photos and venue/gig history are still TBD; the shape is established,
+placeholder data demonstrates the faceted browsing itself.
 
-### 7.4 How this Website was built — `/how-this-was-built`
-A **DocumentationPage** (§6.2): technical writeup as a series of sections
-(stack, schema-driven page architecture, page templates, the GitHub Actions
-→ GitHub Pages deployment pipeline). Effectively documents this exact
-project. Content TBD (placeholder first, single "Overview" section).
+### 7.4 How this Website was built — `/how-this-was-built` — **content finalized**
+A **DocumentationPage** (§6.2), links to its own GitHub repo
+(`janezomgzomg/janemendonca`, labeled "View Source on GitHub"). Four real
+sections: Stack, Content architecture, Page templates, and The faceted
+search experience — describing the project as it actually exists. A
+Deployment section will be added once CI/CD (§10) is actually built,
+rather than describing a pipeline that doesn't exist yet.
 
 ## 8. Design
 

@@ -21,6 +21,22 @@ describe('Resume', () => {
     }
   })
 
+  it('renders the LinkedIn and GitHub links', () => {
+    const data = resumeSchema.parse(rawData)
+    render(<PageRenderingTemplate data={data} />)
+
+    const linkedin = screen.getByRole('link', { name: 'LinkedIn' })
+    expect(linkedin).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/jane-mendonca-ab218a43/',
+    )
+    expect(linkedin).toHaveAttribute('target', '_blank')
+
+    const github = screen.getByRole('link', { name: 'GitHub' })
+    expect(github).toHaveAttribute('href', 'https://github.com/janezomgzomg')
+    expect(github).toHaveAttribute('target', '_blank')
+  })
+
   it('filters experience entries via the multi-select skill facet', async () => {
     const user = userEvent.setup()
     const data = resumeSchema.parse(rawData)
