@@ -1,0 +1,3 @@
+/* PageRenderingTemplate-specific styles, layered on top of Tailwind utility
+   classes in PageRenderingTemplate.tsx. It's the only component that renders
+   section markup now, so this is the one place layout-section styles live. */

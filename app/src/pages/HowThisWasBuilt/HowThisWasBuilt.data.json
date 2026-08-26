@@ -1,0 +1,95 @@
+{
+  "template": "documentation",
+  "heading": "How this Website was built",
+  "links": [
+    { "label": "View Source on GitHub", "url": "https://github.com/janezomgzomg/janemendonca", "icon": "github" }
+  ],
+  "sections": [
+    {
+      "heading": "Overview",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "This site was envisioned, designed, and architected by me. I used Claude Code to speed development and implementation. The plans and the code have been reviewed by me, with some very minimal vibe-coding involved."
+        }
+      ]
+    },
+    {
+      "heading": "Stack",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "This is a single-page React application, built with Vite and written in TypeScript. Styling is done through Tailwind CSS which are applied directly as utility classes in JSX. The content is validated with Zod schemas, and the test suite is Vitest plus React Testing Library."
+        }
+      ]
+    },
+    {
+      "heading": "Content Architecture",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "Every page and component lives within its own folder containing a fixed set of files: the component (where one exists), a Zod schema that is the source of truth for its data shape, a JSON data file holding the actual content, and a colocated test. A page is a unit with no rendering logic of its own. They're all built from a shared template and they do not need the component or the stylesheet."
+        },
+        {
+          "kind": "code",
+          "language": "folder structure",
+          "code": "src/pages/About/                  # no rendering logic — pure data\n  About.schema.ts\n  About.data.json\n  About.test.tsx\n\nsrc/components/FacetedBrowser/     # owns rendering + styles\n  FacetedBrowser.tsx\n  FacetedBrowser.css\n  FacetedBrowser.schema.ts\n  FacetedBrowser.types.ts\n  FacetedBrowser.test.tsx"
+        },
+        {
+          "kind": "paragraph",
+          "text": "The content is never hardcoded into components. A page's data is parsed through its schema before it reaches the UI, so malformed content fails loudly at load time instead of silently breaking the page."
+        }
+      ]
+    },
+    {
+      "heading": "Page Templates",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "Rather than writing a bespoke layout per page, every page is an instance of one of three reusable templates: a Basic page (title, image, text), a Search page (faceted browsing), or a Documentation page (a series of titled sections, like this one)."
+        },
+        {
+          "kind": "paragraph",
+          "text": "A template's structure is itself declared as data. It contains an ordered list of named sections, each naming which field of the page's data it reads. One component interprets that structure and builds the page, so adding a new page is just adding a data file and a schema, with no new rendering code."
+        },
+        {
+          "kind": "code",
+          "language": "ts — the section vocabulary",
+          "code": "type Section =\n  | { kind: 'imageWithText'; imageField: string; textField: string }\n  | { kind: 'linkList'; field: string }\n  | { kind: 'facetedSearch'; facetsField: string; itemsField: string }\n  | { kind: 'sectionList'; field: string }"
+        },
+        {
+          "kind": "code",
+          "language": "SearchPage.layout.json",
+          "code": "[\n  { \"kind\": \"linkList\", \"field\": \"links\" },\n  {\n    \"kind\": \"facetedSearch\",\n    \"facetsField\": \"facetDefinitions\",\n    \"itemsField\": \"items\"\n  }\n]"
+        }
+      ]
+    },
+    {
+      "heading": "The Faceted Search Experience",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "The Resume and Music pages both use a faceted browser. It is a reusable, dataset-agnostic component with a facet sidebar and a list of results, similar to the search interfaces used in e-commerce or enterprise search products. Selecting a facet value filters the results, multiple facets combine together, and some facets, like Skill on Resume or Band on Music, allow selecting more than one value at once."
+        },
+        {
+          "kind": "code",
+          "language": "ts",
+          "code": "type FacetedItem<T> = {\n  id: string\n  facets: Record<string, string[]>\n  data: T\n}\n\ntype FacetedDataset<T> = {\n  facetDefinitions: { key: string; label: string; multiSelect?: boolean }[]\n  items: FacetedItem<T>[]\n}"
+        },
+        {
+          "kind": "paragraph",
+          "text": "It is a small demonstration of search and faceting UX design and engineering."
+        }
+      ]
+    },
+    {
+      "heading": "Deployment",
+      "content": [
+        {
+          "kind": "paragraph",
+          "text": "Pushing to master triggers a GitHub Actions workflow that builds the app and publishes it to a gh-pages branch, which GitHub Pages serves — no manual build step. Since the site is served from a project page rather than a custom domain root, a copy of the built index.html is also published as 404.html, which is what lets a hard refresh on a page like /music resolve correctly instead of 404ing, since GitHub Pages has no native single-page-app fallback of its own."
+        }
+      ]
+    }
+  ]
+}

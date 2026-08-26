@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-signature: "Rouge Script", cursive;
+
+  --color-ink: #1c1917;
+  --color-paper: #faf7f2;
+  --color-accent: #c2410c;
+}
+
+@layer base {
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  a {
+    @apply text-accent underline-offset-4 hover:underline;
+  }
+}
