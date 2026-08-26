@@ -5,70 +5,525 @@
     { "label": "Instagram", "url": "https://www.instagram.com/janemendoncakeys/", "icon": "instagram" }
   ],
   "facetDefinitions": [
-    { "key": "type", "label": "Type" },
+    { "key": "genre", "label": "Genre" },
+    { "key": "ensemble", "label": "Ensemble" },
     { "key": "venue", "label": "Venue" },
+    { "key": "city", "label": "City" },
     { "key": "year", "label": "Year" },
     { "key": "billing", "label": "Billing" },
     { "key": "band", "label": "Band", "multiSelect": true }
   ],
   "items": [
     {
-      "id": "placeholder-photo-1",
+      "id": "gig-2025-07-19-oreillys",
       "facets": {
-        "type": ["Photo"],
-        "venue": ["Placeholder Venue A"],
-        "year": ["2025"]
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["O'Reilly's Pub"],
+        "city": ["San Francisco"],
+        "year": ["2025"],
+        "billing": ["Supporting Act"],
+        "band": ["The Cliffbrakes", "Cheugy", "Don't Tell Kate"]
       },
       "data": {
-        "title": "Placeholder photo at Venue A",
-        "image": {
-          "src": "",
-          "alt": "Placeholder photo at Venue A"
-        }
+        "category": "Right Proper",
+        "title": "O'Reilly's Pub",
+        "titleUrl": "https://www.facebook.com/p/OReillys-Pub-SF-61567865451189/",
+        "subtitle": "Jul 19, 2025",
+        "address": "1840 Haight St, San Francisco, CA 94117",
+        "badge": "Supporting Act",
+        "description": "SF Alternafest!",
+        "tagsLabel": "Lineup",
+        "tags": ["The Cliffbrakes", "Cheugy", "Right Proper", "Don't Tell Kate"]
       }
     },
     {
-      "id": "placeholder-gig-1",
+      "id": "gig-2025-08-15-oreillys",
       "facets": {
-        "type": ["Gig"],
-        "venue": ["Placeholder Venue A"],
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["O'Reilly's Pub"],
+        "city": ["San Francisco"],
+        "year": ["2025"],
+        "billing": ["Supporting Act"],
+        "band": ["The Connor Morrison Band", "Used to Be Valentines", "The Etiquette"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "O'Reilly's Pub",
+        "titleUrl": "https://www.facebook.com/p/OReillys-Pub-SF-61567865451189/",
+        "subtitle": "Aug 15, 2025",
+        "address": "1840 Haight St, San Francisco, CA 94117",
+        "badge": "Supporting Act",
+        "tagsLabel": "Lineup",
+        "tags": ["The Connor Morrison Band", "Used to Be Valentines", "Right Proper", "The Etiquette"]
+      }
+    },
+    {
+      "id": "gig-2025-08-23-winters-tavern",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Winters Tavern"],
+        "city": ["Pacifica"],
+        "year": ["2025"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "Benny La Mar",
+          "PD Brody",
+          "Deer in the Headlights",
+          "Tiger Shade",
+          "The IFIC",
+          "Greg Hoy & The Boys",
+          "The Thrill Killers"
+        ]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Winters Tavern",
+        "titleUrl": "https://winterstavern.com/",
+        "subtitle": "Aug 23, 2025",
+        "address": "1522 Francisco Blvd, Pacifica, CA 94044",
+        "badge": "Supporting Act",
+        "description": "Pretty Loud Fest II",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "Benny La Mar",
+          "PD Brody",
+          "Deer in the Headlights",
+          "Right Proper",
+          "Tiger Shade",
+          "The IFIC",
+          "Greg Hoy & The Boys",
+          "The Thrill Killers"
+        ]
+      }
+    },
+    {
+      "id": "gig-2025-09-27-kilowatt",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Kilowatt Bar"],
+        "city": ["San Francisco"],
         "year": ["2025"],
         "billing": ["Opening Act"],
-        "band": ["Placeholder Band X"]
+        "band": ["The Hooks", "Greg Hoy & The Boys"]
       },
       "data": {
-        "title": "Placeholder Venue A",
-        "subtitle": "2025-06-01 — Opening Act",
-        "description": "With Placeholder Band X"
+        "category": "Right Proper",
+        "title": "Kilowatt Bar",
+        "titleUrl": "https://kilowattbar.com/",
+        "subtitle": "Sep 27, 2025",
+        "address": "3160 16th St, San Francisco, CA",
+        "badge": "Opening Act",
+        "tagsLabel": "Lineup",
+        "tags": ["Right Proper", "The Hooks", "Greg Hoy & The Boys"]
       }
     },
     {
-      "id": "placeholder-gig-2",
+      "id": "gig-2025-12-04-soundwaves-xmas",
       "facets": {
-        "type": ["Gig"],
-        "venue": ["Placeholder Venue B"],
-        "year": ["2024"],
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["The Complex (Soundwaves TV)"],
+        "city": ["San Francisco"],
+        "year": ["2025"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "The Hot Takes",
+          "Deadly Vices",
+          "Joyce Lee",
+          "The Dollyrots",
+          "The Seagulls",
+          "The Sam Chase and the Untraditional",
+          "Greg Hoy & The Boys",
+          "MEGG",
+          "Frantic Romantic",
+          "AMAYA",
+          "Prettyboy Chance",
+          "The Hyperdrive Kittens"
+        ]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "The Complex (Soundwaves TV)",
+        "titleUrl": "https://www.thecomplex-sf.com/",
+        "subtitle": "Dec 4, 2025",
+        "address": "535 Stevenson St, San Francisco, CA 94103",
+        "badge": "Supporting Act",
+        "description": "Soundwaves TV's 36th annual holiday special, \"The 12 Days of Soundwaves Xmas\" — Day 4. Performed \"Ashes.\"",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "The Hot Takes",
+          "Deadly Vices",
+          "Joyce Lee",
+           "Right Proper",
+          "The Dollyrots",
+          "The Seagulls",
+          "The Sam Chase and the Untraditional",
+          "Greg Hoy & The Boys",
+          "MEGG",
+          "Frantic Romantic",
+          "AMAYA",
+          "Prettyboy Chance",
+          "The Hyperdrive Kittens"
+        ],
+        "links": [
+          { "label": "Official Site", "url": "https://soundwavestv.com/2025/11/23/soundwaves-xmas-2025-the-official-site/" },
+          { "label": "Day 4 Recap", "url": "https://soundwavestv.com/2025/12/04/soundwaves-xmas-2025-day-4/" },
+          { "label": "Watch on YouTube", "url": "https://youtu.be/A4xXYbWjIUw?si=Bm4U4oL5RlOS3Eii" }
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-01-17-up-the-creek",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Up the Creek Records"],
+        "city": ["Walnut Creek"],
+        "year": ["2026"],
         "billing": ["Headlining Act"],
+        "band": ["M Jones and The Melee", "Tell Me Tell Me"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Up the Creek Records",
+        "titleUrl": "http://www.upthecreekrecords.com/",
+        "subtitle": "Jan 17, 2026",
+        "address": "2042 Mt Diablo Blvd, Walnut Creek, CA",
+        "badge": "Headlining Act",
+        "tagsLabel": "Lineup",
+        "tags": ["M Jones and The Melee", "Tell Me Tell Me", "Right Proper"]
+      }
+    },
+    {
+      "id": "gig-2026-02-21-knockout",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["The Knockout"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": ["Deer in the Headlights", "Jupiter Noise"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "The Knockout",
+        "titleUrl": "https://theknockoutsf.com/",
+        "subtitle": "Feb 21, 2026",
+        "address": "3223 Mission St, San Francisco, CA",
+        "badge": "Supporting Act",
+        "description": "Jupiter Noise's farewell show",
+        "tagsLabel": "Lineup",
+        "tags": ["Deer in the Headlights", "Right Proper", "Jupiter Noise"]
+      }
+    },
+    {
+      "id": "gig-2026-04-03-hotel-utah",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Hotel Utah Saloon"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": ["Trans Pecos Dept of Dust & Wire", "Lord Rifa"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Hotel Utah Saloon",
+        "titleUrl": "https://hotelutah.com/",
+        "subtitle": "Apr 3, 2026",
+        "address": "500 4th St, San Francisco, CA",
+        "badge": "Supporting Act",
+        "description": "Rock N' Soul",
+        "tagsLabel": "Lineup",
+        "tags": ["Trans Pecos Dept of Dust & Wire", "Right Proper", "Lord Rifa"]
+      }
+    },
+    {
+      "id": "gig-2026-04-16-brick-and-mortar",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Brick & Mortar Music Hall"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "billing": ["Opening Act"],
+        "band": ["Aaron Skiles Band", "Strange Culprits"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Brick & Mortar Music Hall",
+        "titleUrl": "https://www.brickandmortarmusic.com/",
+        "subtitle": "Apr 16, 2026",
+        "address": "1710 Mission St, San Francisco, CA",
+        "badge": "Opening Act",
+        "tagsLabel": "Lineup",
+        "tags": ["Right Proper", "Strange Culprits", "Aaron Skiles Band"]
+      }
+    },
+    {
+      "id": "gig-2026-04-18-she-shreds-fest",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["She Shreds Festival"],
+        "city": ["Alameda"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "Mama Dee",
+          "Zoe FitzGerald Carter",
+          "Squeakie",
+          "Agony Aunts",
+          "StarStrut",
+          "Half Rotten Goddess",
+          "The Hyperdrive Kittens"
+        ]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "She Shreds Festival",
+        "titleUrl": "https://www.instagram.com/sheshredsfest/",
+        "subtitle": "Apr 18, 2026",
+        "address": "Taylor Ave & Webster St, Alameda, CA",
+        "badge": "Supporting Act",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "Mama Dee",
+          "Zoe FitzGerald Carter",
+          "Squeakie",
+          "Agony Aunts",
+          "StarStrut",
+          "Right Proper",
+          "Half Rotten Goddess",
+          "The Hyperdrive Kittens"
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-05-02-elis-mile-high",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Eli's Mile High Club"],
+        "city": ["Oakland"],
+        "year": ["2026"],
+        "billing": ["Headlining Act"],
+        "band": ["California Standard", "Extra! Extra!"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Eli's Mile High Club",
+        "titleUrl": "https://www.elismilehighclub.com/",
+        "subtitle": "May 2, 2026",
+        "address": "3629 MLK Jr Way, Oakland, CA",
+        "badge": "Headlining Act",
+        "description": "Mayday at Mile High: a benefit for Eli's",
+        "tagsLabel": "Lineup",
+        "tags": ["California Standard", "Extra! Extra!", "Right Proper"]
+      }
+    },
+    {
+      "id": "gig-2026-05-21-sf-eagle",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["SF Eagle"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "billing": ["Opening Act"],
+        "band": ["37 Houses", "The Dead Cassettes"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "SF Eagle",
+        "titleUrl": "https://sf-eagle.com/",
+        "subtitle": "May 21, 2026",
+        "address": "398 12th St, San Francisco, CA",
+        "badge": "Opening Act",
+        "tagsLabel": "Lineup",
+        "tags": ["Right Proper", "37 Houses (Record Release)", "The Dead Cassettes"]
+      }
+    },
+    {
+      "id": "gig-2026-05-31-gamelan-in-the-garden",
+      "facets": {
+        "genre": ["Balinese Gamelan"],
+        "ensemble": ["Gamelan Sekar Jaya"],
+        "venue": ["SF Botanical Garden"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "band": ["Gong Kebyar"]
+      },
+      "data": {
+        "category": "Gamelan Sekar Jaya",
+        "title": "SF Botanical Garden",
+        "titleUrl": "https://gggp.org/",
+        "subtitle": "May 31, 2026",
+        "address": "Golden Gate Park, San Francisco, CA",
+        "description": "Gamelan in the Garden, presented by Gamelan Sekar Jaya with support from the Consulate General of Indonesia in San Francisco. Performed with the Angklung Ensemble alongside Gong Kebyar in the Celebration Garden; Gender Wayang and Jegog performed earlier in other areas of the garden.",
+        "tagsLabel": "Lineup",
+        "tags": ["Gong Kebyar"]
+      }
+    },
+    {
+      "id": "gig-2026-06-06-art-house-gallery",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Art House Gallery"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "billing": ["Headlining Act"],
+        "band": ["Accidents at Sundown", "For Cindy", "Peaboo & The Catz"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Art House Gallery",
+        "titleUrl": "https://berkeleyarthouse.wordpress.com/",
+        "subtitle": "Jun 6, 2026",
+        "address": "2905 Shattuck Ave, Berkeley, CA",
+        "badge": "Headlining Act",
+        "description": "Generations of Rock",
+        "tagsLabel": "Lineup",
+        "tags": ["Accidents at Sundown", "For Cindy", "Right Proper", "Peaboo & The Catz"]
+      }
+    },
+    {
+      "id": "gig-2026-06-09-berkeley-festival",
+      "facets": {
+        "genre": ["Balinese Gamelan"],
+        "ensemble": ["Gamelan Sekar Jaya"],
+        "venue": ["First Church Berkeley UCC"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
         "band": []
       },
       "data": {
-        "title": "Placeholder Venue B",
-        "subtitle": "2024-11-15 — Headlining Act"
+        "category": "Gamelan Sekar Jaya",
+        "title": "First Church Berkeley UCC",
+        "titleUrl": "https://www.firstchurchberkeley.org/",
+        "subtitle": "Jun 9, 2026",
+        "address": "2345 Channing Way, Berkeley, CA",
+        "description": "Performed with Gamelan Sekar Jaya as part of the 19th biennial Berkeley Festival & Exhibition, produced by the San Francisco Early Music Society."
       }
     },
     {
-      "id": "placeholder-gig-3",
+      "id": "gig-2026-06-13-starry-plough",
       "facets": {
-        "type": ["Gig"],
-        "venue": ["Placeholder Venue A"],
-        "year": ["2025"],
-        "billing": ["Supporting Act"],
-        "band": ["Placeholder Band X", "Placeholder Band Y"]
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
       },
       "data": {
-        "title": "Placeholder Venue A",
-        "subtitle": "2025-09-10 — Supporting Act",
-        "description": "With Placeholder Band X, Placeholder Band Y"
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Jun 13, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
+      }
+    },
+    {
+      "id": "gig-2026-06-20-donkey-and-goat",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Donkey & Goat Winery"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "Full Moon Fever",
+          "Jaime Tjahaja",
+          "Northern Waste",
+          "Slow Coast",
+          "Moving Van",
+          "Citizen Snips"
+        ]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Donkey & Goat Winery",
+        "titleUrl": "https://www.donkeyandgoat.com/",
+        "subtitle": "Jun 20, 2026",
+        "address": "1340 Fifth St, Berkeley, CA",
+        "badge": "Supporting Act",
+        "description": "Fête de la Musique: Summer Solstice Fest",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "Full Moon Fever",
+          "Jaime Tjahaja",
+          "Northern Waste",
+          "Right Proper",
+          "Slow Coast",
+          "Moving Van",
+          "Citizen Snips"
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-06-28-oakland-grove",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Oakland Grove"],
+        "city": ["Oakland"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Oakland Grove",
+        "titleUrl": "https://www.theoaklandgrove.com/",
+        "subtitle": "Jun 28, 2026",
+        "address": "3630 Telegraph Ave, Oakland, CA",
+        "description": "House band performance"
+      }
+    },
+    {
+      "id": "gig-2026-07-11-starry-plough",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Jul 11, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
+      }
+    },
+    {
+      "id": "gig-2026-07-26-2727-california",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["2727 California"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "2727 California",
+        "subtitle": "Jul 26, 2026",
+        "address": "2727 California St, Berkeley, CA",
+        "description": "House band performance"
       }
     }
   ]

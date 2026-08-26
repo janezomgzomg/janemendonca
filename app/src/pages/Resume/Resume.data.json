@@ -46,7 +46,7 @@
           "Collaborated with UX/UI designers using Figma to turn design intent into functional, production-ready features, and identified and closed multiple capability gaps, reducing feature delivery time",
           "Completed Lucidworks' internal mentorship program as a mentee in 2024 and then mentored junior and senior frontend engineers which raised code quality and accelerated onboarding for new team members"
         ],
-        "skillTags": [
+        "tags": [
           "StencilJS",
           "TypeScript",
           "SCSS",
@@ -97,7 +97,7 @@
           "Flagged feature capability and design gaps and delivered actionable suggestions, helping the team address critical issues before development and improving overall product readiness",
           "Documented, shared, and maintained technical guides for engineers using Markdown and internal wikis, which increased onboarding efficiency and reduced knowledge-transfer delays"
         ],
-        "skillTags": [
+        "tags": [
           "AngularJS",
           "StencilJS",
           "TypeScript",
@@ -140,7 +140,7 @@
           "Advanced from following specs to defining frontend integration requirements and architecture decisions, bridging UI design and engineering and mentoring junior developers through structured mentorship",
           "Collaborated with Product, Design, Core Engineering, and Quality Engineering teams, using GitHub Actions, SonarQube, and Jenkins to set up automated unit and integration testing and code-style checks, which delivered higher-quality software faster"
         ],
-        "skillTags": [
+        "tags": [
           "AngularJS",
           "SCSS",
           "Reactive UI Architecture",
@@ -166,7 +166,7 @@
           "Developed the HTML5 proof-of-concept for a remote web server supporting a home-security system, using CSS and JavaScript; later adopted as the foundation for the subsequent Engineer role. Code was shipped to production in the EMEA region",
           "Created an original in-house comic strip to illustrate process-improvement concepts and designed recognition cards that encouraged team members to apply the concepts, resulting in increased adoption of the new processes across the team"
         ],
-        "skillTags": ["HTML5", "CSS3", "JavaScript", "jQuery"]
+        "tags": ["HTML5", "CSS3", "JavaScript", "jQuery"]
       }
     }
   ]

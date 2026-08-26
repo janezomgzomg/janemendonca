@@ -78,21 +78,65 @@ function SearchResultCard({ data }: { data: SearchResultData }) {
 
   return (
     <article>
-      <h3 className="font-display text-lg font-medium">{data.title}</h3>
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="font-display text-lg font-medium">
+          {data.titleUrl ? (
+            <a
+              href={data.titleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
+              {data.title}
+            </a>
+          ) : (
+            data.title
+          )}
+        </h3>
+        {(data.category || data.badge) && (
+          <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
+            {data.category && (
+              <span className="rounded-md bg-ink/10 px-2 py-0.5 text-xs whitespace-nowrap text-ink/70">
+                {data.category}
+              </span>
+            )}
+            {data.badge && (
+              <span className="rounded-md bg-amber-100 px-2 py-0.5 text-xs whitespace-nowrap text-amber-800">
+                {data.badge}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
       {data.subtitle && <p className="text-sm text-ink/70">{data.subtitle}</p>}
+      {data.address && <p className="text-sm text-ink/70">{data.address}</p>}
       {data.description && <p className="mt-1">{data.description}</p>}
-      {data.skillTags && data.skillTags.length > 0 && (
+      {data.links && data.links.length > 0 && (
+        <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+          {data.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+      {data.tags && data.tags.length > 0 && (
         <div className="mt-2">
           <p className="text-sm font-medium text-ink/70">
-            {data.skillTagsLabel ?? 'Skills'}
+            {data.tagsLabel ?? 'Skills'}
           </p>
           <div className="mt-1 flex flex-wrap gap-1.5">
-            {data.skillTags.map((skill, index) => (
+            {data.tags.map((tag, index) => (
               <span
                 key={index}
                 className="rounded-md bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
               >
-                {skill}
+                {tag}
               </span>
             ))}
           </div>

@@ -230,34 +230,48 @@ The three templates (data shape each page's `.schema.ts` composes):
   itself).
 
 **Commonized search results.** Every `SearchPage` item's `data` conforms to
-one shape — `{ title, subtitle?, description?, skillTags?: string[],
-skillTagsLabel?: string, bullets?: string[], bulletsLabel?: string,
-image?: { src, alt } }` — rendered by a single built-in card component
-inside `SearchPage`, not a per-page `renderResult` function. `image`
-present renders an image card (a placeholder box using `alt` as caption
-when `src` is empty, e.g. Music's photo before a real asset exists);
-otherwise a text card. Card body order: `description`, then `skillTags` (a
-row of small chips — light blue background, 6px border radius — under a
-`skillTagsLabel` heading, default `"Skills"`), then `bullets` (a
-collapsible native `<details>`/`<summary>`, closed by default so a list of
-several dense roles stays scannable, with `bulletsLabel` as the
-`<summary>` text — `"Role & Responsibilities"` for Resume). Both labels
-are page-supplied rather than hardcoded into the shared card, since a
-future page reusing these fields for something else might want different
-wording. `skillTags` is deliberately distinct from `facets.skill`: the
-facet uses coarse categories sized for usable filtering (few, broad
-values), while `skillTags` shows the specific granular technologies per
-role purely for display — showing both would be redundant if they held
-the same values. This was a
-deliberate trade: Resume's experience entries and Music's photo/gig entries
-used to have distinct, richly-typed shapes (`role`/`company`/`period` vs.
-a `type: 'photo' | 'gig'` discriminated union) rendered by page-specific
-JSX. Commonizing to one shape means every page's content already fits the
-generic renderer — e.g. a gig's `subtitle` is the pre-formatted string
-`"2025-06-01 — Opening Act"` rather than separate `date`/`billing` fields
-composed at render time — in exchange for zero custom rendering code per
-page. Faceting itself is unaffected: filtering still runs on `facets`,
-which is independent of how `data` is shaped for display.
+one shape — `{ title, titleUrl?, subtitle?, address?, category?, badge?,
+description?, links?: { label, url }[], tags?: string[], tagsLabel?:
+string, bullets?: string[], bulletsLabel?: string, image?: { src, alt } }`
+— rendered by a single built-in card component inside `SearchPage`, not a
+per-page `renderResult` function. `image` present renders an image card (a
+placeholder box using `alt` as caption when `src` is empty, e.g. Music's
+photo before a real asset exists); otherwise a text card. The item-level
+`links` (e.g. Music's Soundwaves TV entry linking its official recap and
+YouTube recording) is distinct from `SearchPage`'s page-level `links` (e.g.
+Music's Instagram): simpler — no `icon` — since these are one-off
+"watch/read this" links rather than social profiles, both open in a new
+tab. Card body order: title (a plain link, opening in a new tab, when
+`titleUrl` is present — e.g. Music's venue name linking to the venue's own
+site) with `category` and `badge` pinned top-right of the title row, in
+that order (e.g. Music's ensemble chip — neutral gray — immediately to the
+left of its billing-type chip — amber — so the two read as related but
+distinct at a glance), then `subtitle`, then `address`
+immediately below it (e.g. Music's street address), then `description`,
+then item `links`, then `tags` (a row of small chips — light blue
+background, 6px border radius — under a `tagsLabel` heading, default
+`"Skills"`; reused for Resume's per-role technologies and Music's gig
+lineup, since both are "a labeled row of small display-only chips" even
+though the content differs), then `bullets` (a collapsible native
+`<details>`/`<summary>`, closed by default so a list of several dense
+roles stays scannable, with `bulletsLabel` as the `<summary>` text —
+`"Role & Responsibilities"` for Resume). Labels are page-supplied rather
+than hardcoded into the shared card, since a future page reusing these
+fields for something else might want different wording. `tags` is
+deliberately distinct from `facets`: facets use coarse categories sized
+for usable filtering (few, broad values, or many unique values meant to be
+searched rather than skimmed), while `tags` is purely for display — e.g.
+Resume's specific granular technologies per role (distinct from the
+broader `facets.skill` categories), or Music's full gig lineup rendered as
+chips (in addition to, not instead of, the separately-filterable `Band`
+facet). This was a deliberate trade: Resume's experience entries and
+Music's photo/gig entries used to have distinct, richly-typed shapes
+(`role`/`company`/`period` vs. a `type: 'photo' | 'gig'` discriminated
+union) rendered by page-specific JSX. Commonizing to one shape means every
+page's content already fits the generic renderer in exchange for zero
+custom rendering code per page. Faceting itself is unaffected: filtering
+still runs on `facets`, which is independent of how `data` is shaped for
+display.
 
 Templates never own content (no `.data.json`) — same rule as any
 component that's prop/data-driven rather than content-owning (see §6).
@@ -289,24 +303,54 @@ for a sparse, not-useful facet). `links` holds LinkedIn and GitHub — the
 two profiles relevant to engineering work, distinct from Music's Instagram
 (§7.3).
 
-### 7.3 Music — `/music` — **links finalized**
+### 7.3 Music — `/music` — **gig history finalized**
 A **SearchPage** (§6.2) using the optional `links` field, set to her
 Instagram profile — the split (LinkedIn/GitHub on Resume, Instagram here)
 makes which links relate to engineering vs. music evident from page
 context alone, with no extra grouping/labeling needed.
-- Photos and venue/gig history are combined into **one** faceted browser
-  (see §6.1): each photo and each gig is a result card, filterable by:
-  - Type (Photo/Gig), Venue, and Year — single-select
-  - **Billing** (Opening Act / Supporting Act / Headlining Act) —
-    single-select, filters to gigs played in that role
-  - **Band** — multi-select, lists every band shared a bill with; a gig
-    with no other acts (solo headline) simply has no band facet values
-  so filtering to a venue surfaces both the photos taken there and the gigs
-  played there together, and filtering to a band surfaces every gig shared
-  with it regardless of venue.
 
-Real photos and venue/gig history are still TBD; the shape is established,
-placeholder data demonstrates the faceted browsing itself.
+20 real gigs across three ensembles: **Right Proper** (14, an
+Oakland-based indie alt-pop/rock band), **Gamelan Sekar Jaya** (2,
+Balinese gamelan), and **SingJam**/Sacred Music Fellowship (4, house band
+— no billing or bill, since it's not a rock-show lineup), listed in true
+chronological order (not grouped by ensemble). Each card's `subtitle` is
+just the date; `address` holds the venue's street address rendered right
+below it; `category` holds the ensemble name, rendered as a neutral chip
+immediately to the left of `badge` so a visitor can tell at a glance which
+group a gig belongs to without reading the Ensemble facet; `badge` holds
+the billing type (omitted entirely for gigs where it doesn't apply —
+gamelan, SingJam); `title` links via `titleUrl` to the venue's real
+website (a Facebook/Instagram page where no dedicated site exists) opening
+in a new tab; and the bill/lineup renders as `tags` under a `"Lineup"`
+label, using the same chip styling as Resume's skill tags. Filterable by:
+- **Genre** (indie Rock / Balinese Gamelan / Community Jam) — one value
+  per ensemble; framed around musical style rather than the ensemble name
+  itself since that's what a visitor unfamiliar with the specific groups
+  is more likely to search by
+- **Ensemble** — single-select (Right Proper / Gamelan Sekar Jaya /
+  SingJam) — added once the data showed she performs with three distinct
+  groups; lets a visitor see everything with one of them
+- **Venue**, **City**, and **Year** — single-select
+- **Billing** (Opening Act / Supporting Act / Headlining Act) —
+  single-select; omitted entirely for gigs where it doesn't apply
+  (gamelan, SingJam) rather than forced into the rock-show vocabulary
+- **Band** — multi-select, every other act on each bill (~50 unique
+  values, most appearing once) — deliberately *not* consolidated into
+  broad categories the way Resume's Skill facet was, since here the
+  point is finding a specific band she's shared a bill with, not
+  filtering usably across a small set; kept distinct from the display-only
+  `tags` lineup on each card (same underlying data, different purpose —
+  one's for filtering, one's for reading)
+
+So filtering to a venue surfaces every gig played there, filtering to an
+ensemble surfaces everything with that group, and filtering to a band
+surfaces every gig shared with it regardless of venue. One gig (a
+Soundwaves TV recording) has real item-level `links` (§6.2) to the
+official recap and the YouTube recording. Photos aren't in yet; real
+photos and any additional external links (Spotify, Bandcamp, etc.) are
+still TBD. Whether a card renders as a photo or a gig is driven entirely
+by the presence of `image` in its `data` (§6.2), not by any facet value —
+so adding photos later needs no changes to the Genre facet or its values.
 
 ### 7.4 How this Website was built — `/how-this-was-built` — **content finalized**
 A **DocumentationPage** (§6.2), links to its own GitHub repo

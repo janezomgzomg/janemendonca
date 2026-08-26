@@ -54,7 +54,7 @@ describe('Resume', () => {
     expect(screen.getAllByText('Skills').length).toBe(data.items.length)
 
     const uniqueSkills = new Set(
-      data.items.flatMap((item) => item.data.skillTags ?? []),
+      data.items.flatMap((item) => item.data.tags ?? []),
     )
     for (const skill of uniqueSkills) {
       expect(screen.getAllByText(skill).length).toBeGreaterThan(0)

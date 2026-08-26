@@ -17,6 +17,7 @@ export default function FacetedBrowser<T>({
   renderResult: (item: FacetedItem<T>) => ReactNode
 }) {
   const [selected, setSelected] = useState<Selection>({})
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   const activeKeys = Object.keys(selected)
   const visibleItems =
@@ -53,78 +54,89 @@ export default function FacetedBrowser<T>({
   return (
     <div className="grid grid-cols-1 gap-8 sm:grid-cols-[200px_1fr]">
       <aside>
-        {dataset.facetDefinitions.map((facet) => {
-          const values = Array.from(
-            new Set(dataset.items.flatMap((item) => item.facets[facet.key] ?? [])),
-          ).sort()
+        <button
+          type="button"
+          onClick={() => setFiltersOpen((open) => !open)}
+          aria-expanded={filtersOpen}
+          className="mb-4 flex w-full items-center justify-between text-xs font-semibold tracking-wide text-ink/50 uppercase sm:hidden"
+        >
+          Filters
+          <span aria-hidden="true">{filtersOpen ? '−' : '+'}</span>
+        </button>
+        <div className={`${filtersOpen ? 'block' : 'hidden'} sm:block`}>
+          {dataset.facetDefinitions.map((facet) => {
+            const values = Array.from(
+              new Set(dataset.items.flatMap((item) => item.facets[facet.key] ?? [])),
+            ).sort()
 
-          if (values.length === 0) return null
+            if (values.length === 0) return null
 
-          return (
-            <fieldset key={facet.key} className="mb-6 border-0 p-0">
-              <legend className="p-0 text-xs font-semibold tracking-wide text-ink/50 uppercase">
-                {facet.label}
-              </legend>
-              <ul className="mt-2 space-y-1 text-sm">
-                {values.map((value) => {
-                  const count = dataset.items.filter((item) =>
-                    item.facets[facet.key]?.includes(value),
-                  ).length
-                  const isActive = selected[facet.key]?.includes(value) ?? false
+            return (
+              <fieldset key={facet.key} className="mb-6 border-0 p-0">
+                <legend className="p-0 text-xs font-semibold tracking-wide text-ink/50 uppercase">
+                  {facet.label}
+                </legend>
+                <ul className="mt-2 max-h-44 space-y-1 overflow-y-auto pr-1 text-sm">
+                  {values.map((value) => {
+                    const count = dataset.items.filter((item) =>
+                      item.facets[facet.key]?.includes(value),
+                    ).length
+                    const isActive = selected[facet.key]?.includes(value) ?? false
 
-                  if (facet.multiSelect) {
-                    const inputId = `facet-${facet.key}-${value}`
+                    if (facet.multiSelect) {
+                      const inputId = `facet-${facet.key}-${value}`
+                      return (
+                        <li key={value}>
+                          <label htmlFor={inputId} className="flex items-center gap-2">
+                            <input
+                              id={inputId}
+                              type="checkbox"
+                              checked={isActive}
+                              onChange={() => toggleValue(facet.key, value, true)}
+                            />
+                            <span
+                              className={
+                                isActive ? 'font-medium text-accent' : 'text-ink/70'
+                              }
+                            >
+                              {value} <span className="text-ink/40">({count})</span>
+                            </span>
+                          </label>
+                        </li>
+                      )
+                    }
+
                     return (
                       <li key={value}>
-                        <label htmlFor={inputId} className="flex items-center gap-2">
-                          <input
-                            id={inputId}
-                            type="checkbox"
-                            checked={isActive}
-                            onChange={() => toggleValue(facet.key, value, true)}
-                          />
-                          <span
-                            className={
-                              isActive ? 'font-medium text-accent' : 'text-ink/70'
-                            }
-                          >
-                            {value} <span className="text-ink/40">({count})</span>
-                          </span>
-                        </label>
+                        <button
+                          type="button"
+                          onClick={() => toggleValue(facet.key, value, false)}
+                          className={
+                            isActive
+                              ? 'font-medium text-accent'
+                              : 'text-ink/70 hover:text-ink'
+                          }
+                        >
+                          {value} <span className="text-ink/40">({count})</span>
+                        </button>
                       </li>
                     )
-                  }
+                  })}
+                </ul>
+              </fieldset>
+            )
+          })}
 
-                  return (
-                    <li key={value}>
-                      <button
-                        type="button"
-                        onClick={() => toggleValue(facet.key, value, false)}
-                        className={
-                          isActive
-                            ? 'font-medium text-accent'
-                            : 'text-ink/70 hover:text-ink'
-                        }
-                      >
-                        {value} <span className="text-ink/40">({count})</span>
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-            </fieldset>
-          )
-        })}
-
-        {activeKeys.length > 0 && (
-          <button
-            type="button"
-            onClick={() => setSelected({})}
-            className="text-sm text-accent"
-          >
-            Clear all filters
-          </button>
-        )}
+          {activeKeys.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setSelected({})}
+              className="text-sm text-accent"
+            >
+              Clear all filters
+            </button>
+          )}
+        </div>
       </aside>
 
       <div>
