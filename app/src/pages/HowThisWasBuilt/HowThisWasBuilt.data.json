@@ -87,7 +87,7 @@
       "content": [
         {
           "kind": "paragraph",
-          "text": "Pushing to master triggers a GitHub Actions workflow that builds the app and publishes it to a gh-pages branch, which GitHub Pages serves — no manual build step. Since the site is served from a project page rather than a custom domain root, a copy of the built index.html is also published as 404.html, which is what lets a hard refresh on a page like /music resolve correctly instead of 404ing, since GitHub Pages has no native single-page-app fallback of its own."
+          "text": "Netlify is connected directly to this GitHub repo and builds the app on every push — no manual build step. A netlify.toml at the repo root points it at the app subfolder and adds a catch-all redirect to index.html, which is what lets a hard refresh on a page like /music resolve correctly rather than 404ing."
         }
       ]
     }
