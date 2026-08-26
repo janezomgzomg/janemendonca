@@ -1,7 +1,7 @@
 # PRD: janemendonca.com React Revamp
 
-- **Status:** Draft — pending review
-- **Branch:** `aug-2026-website-revamp`
+- **Status:** Shipped — live at janemendonca.com
+- **Branch:** `aug-2026-website-revamp` (merged)
 - **Date:** 2026-08-21
 
 ## 1. Background
@@ -47,7 +47,8 @@ single-page application, deployed automatically to GitHub Pages.
 
 The build output (`/app/dist`) is never committed to `master`. Netlify
 builds it directly from this repo per `netlify.toml` (`base = "app"`,
-`command = "npm run build"`, `publish = "app/dist"`) on every push.
+`command = "npm run build"`, `publish = "dist"` — resolved relative to
+`base`, so this is `app/dist`) on every push.
 
 ## 5. Tech Stack
 
@@ -379,31 +380,34 @@ layout to be proposed during implementation and iterated on visually.
   every page is `false`, the banner disappears on the next deploy — no
   separate step required to "turn it off."
 
-## 10. Deployment & Domain — **hosted on Netlify**
+## 10. Deployment & Domain — **live at janemendonca.com**
 
 - Deployed on Netlify, connected directly to this GitHub repo. `netlify.toml`
   at the repo root sets `base = "app"`, `command = "npm run build"`,
-  `publish = "app/dist"`, plus a catch-all redirect (`/* → /index.html`,
-  status 200) so client-side routes resolve on a hard refresh — Netlify's
-  native SPA-fallback mechanism, simpler than GitHub Pages' 404.html copy
-  trick used in an earlier interim deploy (see below).
+  `publish = "dist"` (resolved relative to `base`, so this is `app/dist` —
+  an initial `publish = "app/dist"` doubled the prefix and failed the
+  first real deploy), `NODE_VERSION = "22"` (Vite 8 requires `^20.19.0 ||
+  >=22.12.0`; the Netlify site's Node was bumped from a stale v10), plus a
+  catch-all redirect (`/* → /index.html`, status 200) so client-side
+  routes resolve on a hard refresh.
 - Vite's `base` is `/` (default) and the router has no basename beyond
   that, since Netlify serves the app from the domain root — no subpath to
-  account for, unlike a GitHub Pages project page.
-- `janemendonca.com`'s DNS (registrar: Squarespace Domains) is already
+  account for.
+- `janemendonca.com`'s DNS (registrar: Squarespace Domains) was already
   delegated to Netlify's nameservers (`dnsN.p03.nsone.net`) from earlier
   use of Netlify for this domain — discovered once the deploy story
-  actually needed sorting out, rather than assumed upfront. This means no
-  registrar-side DNS change is needed; connecting the custom domain to
-  this Netlify site happens entirely inside Netlify's dashboard.
+  actually needed sorting out, rather than assumed upfront. No
+  registrar-side DNS change was needed; connecting the domain happened
+  entirely inside Netlify's dashboard. Live and verified at
+  `https://www.janemendonca.com/` (bare domain redirects to `www`).
 - **History:** before landing on Netlify, a GitHub Actions → `gh-pages` →
-  GitHub Pages pipeline was built and verified working at
-  `janezomgzomg.github.io/janemendonca/` (including the subpath/`base`
-  handling and the 404.html SPA-fallback trick this required). That
-  pipeline is superseded now that Netlify is the deployment target — it
-  should be decommissioned (GitHub Pages disabled, `.github/workflows/`
-  removed) once the Netlify deploy is confirmed live, to avoid two
-  simultaneously-live copies of the site drifting apart.
+  GitHub Pages pipeline was built and briefly verified working at
+  `janezomgzomg.github.io/janemendonca/`. It's now fully decommissioned —
+  the `gh-pages` branch was deleted (which removed the GitHub Pages site
+  entirely; the REST API refuses to deactivate Pages directly, but
+  deleting its source branch had the same effect) and
+  `.github/workflows/deploy.yml` was removed in the same PR that added
+  the Netlify config.
 
 ## 11. Open Questions
 
