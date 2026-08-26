@@ -4,7 +4,7 @@ import { pages } from './pages/registry'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="min-h-screen">
         <Header items={pages.map(({ path, label }) => ({ path, label }))} />
         <main className="mx-auto max-w-3xl px-4 py-8">

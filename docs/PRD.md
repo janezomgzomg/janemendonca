@@ -379,21 +379,43 @@ layout to be proposed during implementation and iterated on visually.
   every page is `false`, the banner disappears on the next deploy — no
   separate step required to "turn it off."
 
-## 10. Deployment & Domain
+## 10. Deployment & Domain — **pipeline built, domain still pending**
 
-- GitHub Actions workflow triggers on push to `master`, builds `/app`,
-  publishes `dist/` to `gh-pages`.
-- GitHub Pages configured to serve from the `gh-pages` branch.
-- Goes live **early** — as soon as page shells exist (placeholder content,
-  under-construction banner showing) — rather than waiting for real
-  content. See the implementation plan for phase ordering.
+- `.github/workflows/deploy.yml` triggers on push to `master` (plus manual
+  `workflow_dispatch`), builds `/app`, and publishes `dist/` to the
+  `gh-pages` branch via `peaceiris/actions-gh-pages`.
+- Vite is configured with `base: '/janemendonca/'` and the router's
+  `basename` reads that same value (`import.meta.env.BASE_URL`), since the
+  site is served today from the project page
+  (`janezomgzomg.github.io/janemendonca/`), not the repo root. Public-asset
+  paths in page data (e.g. About's photo) are root-relative strings that
+  Vite doesn't rewrite for `base` automatically, so they're prefixed at
+  render time by a small `withBaseUrl` helper in `PageRenderingTemplate`.
+  Both the `base` config and this helper become no-ops to revert (`base:
+  '/'`) once the custom domain serves from root — no other code changes
+  needed.
+- A copy of `dist/index.html` is published as `dist/404.html` too, since
+  GitHub Pages has no native SPA fallback — this is what makes a hard
+  refresh on a deep link (e.g. `/janemendonca/music`) resolve instead of
+  404ing.
+- GitHub Pages' source still needs to be switched from "Deploy from
+  branch: `master` /(root)" (its current legacy setting, serving the old
+  static site) to "Deploy from branch: `gh-pages` /(root)" for this
+  pipeline to actually go live — a one-time repo settings change, not
+  something this workflow can do on its own the very first time it runs
+  (the `gh-pages` branch has to exist before Pages can be pointed at it).
 - `janemendonca.com` DNS currently resolves to `13.52.188.95` /
   `52.52.192.191` — **not** GitHub Pages IPs. DNS needs to be repointed
   (A records to GitHub Pages' `185.199.108/109/110/111.153`, or apex
   handled per registrar) — this requires registrar access outside of this
-  repo and happens as part of the early deploy, not deferred to the end.
+  repo, so the site goes live first at the default `github.io` project
+  page URL and the custom domain follows as a separate step once DNS is
+  repointed.
 - A `CNAME` file (containing `janemendonca.com`) will be added back to the
-  published output so GitHub Pages recognizes the custom domain.
+  published output — and `base` reverted to `/` — once DNS is repointed
+  and the custom domain is confirmed serving from GitHub Pages, so
+  visitors are never silently redirected to a domain that isn't actually
+  pointed there yet.
 
 ## 11. Open Questions
 

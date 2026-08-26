@@ -28,6 +28,14 @@ function getField(data: Record<string, unknown>, field: string): unknown {
   return data[field]
 }
 
+// Page data stores public-asset paths root-relative (e.g. "/images/x.png"),
+// but Vite doesn't rewrite hardcoded strings like this for the configured
+// `base` the way it does for index.html or imported assets — only this
+// prefix does, so it has to be applied at render time.
+function withBaseUrl(path: string): string {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+}
+
 // Minimal monochrome brand marks (matching the icon set convention used by
 // Simple Icons/Font Awesome brands, CC0/permissively licensed), sized via
 // currentColor so they inherit the surrounding text color.
@@ -65,7 +73,7 @@ function SearchResultCard({ data }: { data: SearchResultData }) {
   if (data.image) {
     return data.image.src ? (
       <img
-        src={data.image.src}
+        src={withBaseUrl(data.image.src)}
         alt={data.image.alt}
         className="aspect-square w-full rounded object-cover"
       />
@@ -192,7 +200,7 @@ function renderSection(section: Section, data: Record<string, unknown>): ReactNo
       return (
         <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-[240px_1fr]">
           <img
-            src={image.src}
+            src={withBaseUrl(image.src)}
             alt={image.alt}
             className="aspect-3/4 w-full rounded-lg object-cover"
             style={{ objectPosition: image.position ?? '50% 50%' }}
