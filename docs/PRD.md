@@ -78,17 +78,22 @@ type PageConfig = {
 
 - A central page registry (`app/src/pages/registry.ts`) lists all
   `PageConfig` entries and feeds React Router's route table in `App.tsx`.
-- Each page lives in its own folder under `app/src/pages/<PageName>/`,
-  containing five files:
-  - `<PageName>.tsx` — the presentational component
-  - `<PageName>.schema.ts` — a Zod schema; this is the **source of truth**
-    for the page's data shape
-  - `<PageName>.types.ts` — a thin re-export,
-    `type X = z.infer<typeof schema>`, so the type can never drift from the
-    schema that actually validates the data
+- Each page lives in its own folder under `app/src/pages/<PageName>/`. The
+  general pattern is five files (component, schema, types, data,
+  test) — but every current page is a `PageRenderingTemplate` instance
+  (§6.2), which has no page-specific component or type to own, so in
+  practice each page folder today is just three files:
+  - `<PageName>.schema.ts` — a re-export (or small `.extend()`) of
+    whichever template schema (§6.2) the page uses; this is still the
+    **source of truth** for the page's data shape
   - `<PageName>.data.json` — the page's content
   - `<PageName>.test.tsx` — Vitest + React Testing Library tests that parse
-    the data through the schema and render the component
+    the data through the schema and render it via `PageRenderingTemplate`
+  - No `<PageName>.tsx`, `.css`, or `.types.ts`: there's no page-specific
+    rendering logic to hold a component or style override, and a
+    `type X = z.infer<typeof schema>` re-export with no consumer is dead
+    code — add one back only if a page actually needs it (e.g. a future
+    page with real custom logic beyond what a template offers).
 - The registry imports each page's raw JSON and calls `schema.parse(...)`
   on it before handing the result to `PageConfig.data` — a malformed data
   file fails loudly (build/dev time) instead of silently breaking the UI.
@@ -141,38 +146,67 @@ type FacetedDataset<T> = { facetDefinitions: { key: string; label: string; multi
 ### 6.2 Page Templates
 
 Every page is an instance of one of three reusable templates in
-`app/src/templates/`. Pages have **no `.tsx` or `.css` of their own** —
-a page folder is just `.schema.ts` + `.types.ts` + `.data.json` + `.test.tsx`.
-Rendering is fully centralized:
+`app/src/templates/`. Pages have **no `.tsx`, `.css`, or `.types.ts` of
+their own** — a page folder is just `.schema.ts` + `.data.json` +
+`.test.tsx` (see §6 for why `.types.ts` is dropped when nothing consumes
+it). Rendering is fully centralized:
 
 - Each page's `data.json` carries a `template: "basic" | "search" |
   "documentation"` discriminator.
 - `templates/PageRenderingTemplate/` is the **one component the route
   registry ever references** (`registry.ts`'s `component` field is
-  `PageRenderingTemplate` for all four routes). It switches on
-  `page.template` and renders the matching template component. Its schema,
-  `pageSchema`, is a `z.discriminatedUnion('template', [...])` over the
-  three template schemas below.
+  `PageRenderingTemplate` for all four routes). Its schema, `pageSchema`,
+  is a `z.discriminatedUnion('template', [...])` over the three template
+  data schemas below.
 - A page's own `.schema.ts` is just a re-export (or a small `.extend(...)`)
   of whichever template schema it uses — e.g. `export const aboutSchema =
   basicPageSchema`. No page-specific TypeScript rendering logic exists
   anywhere; adding a page means adding a data file and a schema re-export,
   nothing else.
+- **A template's structure is itself data.** `BasicPage`, `SearchPage`, and
+  `DocumentationPage` each have no `.tsx` — only `.schema.ts` (the page
+  *data* shape), `.types.ts`, and a `.layout.json` (the page *structure*: an
+  ordered list of named sections). `PageRenderingTemplate.tsx` is the only
+  `.tsx` file across all three template folders: it picks the `.layout.json`
+  matching `page.template`, renders `<h1>{page.heading}</h1>` (the one field
+  every template shares), then maps each section through one
+  `renderSection(section, data)` function with a case per section `kind`.
+  A section names the data field(s) it reads by string (e.g.
+  `{ kind: "imageWithText", imageField: "image", textField: "paragraphs" }`)
+  — the trade-off is that field access there is dynamic (a string lookup
+  cast at the point of use) rather than statically typed, in exchange for
+  the structure itself being swappable data instead of hardcoded JSX. The
+  page data underneath is still fully typed and Zod-validated at the
+  registry loading boundary; only the *layout interpretation* step gives up
+  static field-name checking.
+- Current section kinds, each a case in `renderSection`:
+  - `imageWithText` (`imageField`, `textField`) — **BasicPage**'s layout:
+    `[{ kind: "imageWithText", imageField: "image", textField: "paragraphs" }]`
+  - `linkList` (`field`) — renders "Coming soon." when the field is an
+    empty array, an anchor list when populated, nothing when the field is
+    absent from the page's data entirely
+  - `facetedSearch` (`facetsField`, `itemsField`) — renders `FacetedBrowser`
+    (§6.1) off those two fields, using the commonized result shape below
+  - `sectionList` (`field`) — **DocumentationPage**'s layout:
+    `[{ kind: "sectionList", field: "sections" }]`
+  - **SearchPage**'s layout is `linkList` then `facetedSearch`:
+    `[{ kind: "linkList", field: "links" }, { kind: "facetedSearch",
+    facetsField: "facetDefinitions", itemsField: "items" }]` — Resume's data
+    simply omits `links`, so that section renders nothing for it.
 
-The three templates:
+The three templates (data shape each page's `.schema.ts` composes):
 
-- **BasicPage** — title, image, block of text.
-  `{ template: "basic", heading, image: { src, alt, position? },
-  paragraphs: string[] }`. `position` is an optional CSS `object-position`
-  value for off-center subjects; defaults to centered. Used by **About**.
-- **SearchPage** — heading + the faceted browse experience from §6.1, plus
-  optional `links`. `{ template: "search", heading, links?: { label, url
-  }[], facetDefinitions, items }`. Used by **Resume** (no `links`) and
-  **Music** (`links` present — `[]` renders "Coming soon.").
-- **DocumentationPage** — heading plus an array of sections, each with its
-  own sub-heading and paragraphs: `{ template: "documentation", heading,
-  sections: { heading, paragraphs: string[] }[] }`. Used by **How this
-  Website was built**.
+- **BasicPage** — `{ template: "basic", heading, image: { src, alt,
+  position? }, paragraphs: string[] }`. `position` is an optional CSS
+  `object-position` value for off-center subjects; defaults to centered.
+  Used by **About**.
+- **SearchPage** — `{ template: "search", heading, links?: { label, url
+  }[], facetDefinitions, items }` — heading plus the faceted browse
+  experience from §6.1, plus optional links. Used by **Resume** (no
+  `links`) and **Music** (`links` present — `[]` renders "Coming soon.").
+- **DocumentationPage** — `{ template: "documentation", heading, sections:
+  { heading, paragraphs: string[] }[] }`. Used by **How this Website was
+  built**.
 
 **Commonized search results.** Every `SearchPage` item's `data` conforms to
 one shape — `{ title, subtitle?, description?, image?: { src, alt } }` —
@@ -192,9 +226,10 @@ which is independent of how `data` is shaped for display.
 
 Templates never own content (no `.data.json`) — same rule as any
 component that's prop/data-driven rather than content-owning (see §6).
-They do own their schema, types, styles (except `PageRenderingTemplate`,
-which renders nothing of its own), and tests, tested with synthetic sample
-data rather than a real page's content.
+`PageRenderingTemplate` owns the only styles and tests left at the
+template layer (`BasicPage`/`SearchPage`/`DocumentationPage` have neither,
+having no `.tsx` to style or test), exercised with synthetic sample data
+covering all three `template` kinds rather than a real page's content.
 
 ## 7. Pages
 

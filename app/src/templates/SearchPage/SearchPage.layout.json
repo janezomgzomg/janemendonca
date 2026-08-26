@@ -1,0 +1,4 @@
+[
+  { "kind": "linkList", "field": "links" },
+  { "kind": "facetedSearch", "facetsField": "facetDefinitions", "itemsField": "items" }
+]
