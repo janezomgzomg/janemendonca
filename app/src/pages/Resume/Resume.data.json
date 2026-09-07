@@ -33,18 +33,15 @@
         "subtitle": "Lucidworks — San Francisco — Feb 2022 – Jul 2026",
         "bulletsLabel": "Role & Responsibilities",
         "bullets": [
-          "Developed SaaS and on-Prem Fusion Admin UI features using StencilJS, TypeScript, and SCSS, delivering a unified user experience across platforms and reducing UI inconsistencies",
-          "Built AI-powered search and recommendation UI components including configuration screens and result views, enabling faster configuration of AI features for end users",
-          "Enabled adoption of Claude Code and Claude Skills, authoring reusable prompt templates and reviewing AI-generated code before release, which cut component development time and improved code quality across the engineering team",
+          "Built features for SaaS platform and on-Prem Fusion UI using StencilJS, TypeScript, and SCSS, delivering a consistent user experience across both deployment models",
+          "Shipped and owned AI-powered no-code search UI solutions including configuration screens and result views, enabling drastically faster configuration of solutions for customers and reducing implementation time from a quarter to a week",
+          "Supported adoption of Claude Code and Claude Skills across engineering, authoring reusable prompt templates to enable faster AI agent and AI-powered search component development and meet sprint goals",
           "Extended the frontend component library and design system across ten micro-frontend repositories, standardizing reusable components and improving UI consistency, which lowered maintenance effort",
-          "Leveraged deep knowledge of backend data models to partner with API engineers, refining API contracts to fully meet product requirements, resulting in smoother feature integration and fewer post-release bugs",
-          "Operated in a Kubernetes and Docker deployment environment on Google Cloud Platform, enabling reliable SaaS releases and reducing deployment incidents",
-          "Led the Fusion Admin UI roadmap and technical-debt management, applying first-principles thinking to prioritize and resolve a multi-year backlog, which streamlined releases and improved UI stability",
-          "Provided domain knowledge and technical direction across all frontend squads while owning a key product area, resulting in consistent implementation patterns and faster feature delivery",
-          "Led cross-team initiatives to standardize frontend architecture, frameworks, and best practices, enforcing code quality, PR review, and documentation standards, which increased code consistency and reduced review cycle time",
-          "Conducted technical interviews with hiring decisions instrumental in building nearly the entire frontend team",
-          "Collaborated with UX/UI designers using Figma to turn design intent into functional, production-ready features, and identified and closed multiple capability gaps, reducing feature delivery time",
-          "Completed Lucidworks' internal mentorship program as a mentee in 2024 and then mentored junior and senior frontend engineers which raised code quality and accelerated onboarding for new team members"
+          "Applied deep knowledge of backend data models and defined API contracts with backend engineers, ensuring endpoints met product requirements and reducing post-release integration bugs",
+          "Led the Fusion Admin UI roadmap and technical-debt management, applying first-principles thinking to prioritize and resolve a multi-year backlog. Modernized the codebase by upgrading from Webpack 4 to Webpack 5 and node v10 to node v18",
+          "Set technical direction for all frontend squads by releasing documentation standards and code quality and PR review guidelines ensuring engineers followed consistent implementation patterns and reduced review cycle time",
+          "Hired nearly the entire frontend team over my 12 years at Lucidworks",
+          "Collaborated with Product and Design and regularly flagged technical feasibility and edge-case feature gaps in early designs before dev handoff, reducing rework during implementation"
         ],
         "tags": [
           "StencilJS",
@@ -86,16 +83,13 @@
         "subtitle": "Lucidworks — San Francisco — Nov 2017 – Feb 2022",
         "bulletsLabel": "Role & Responsibilities",
         "bullets": [
-          "Transitioned the UI codebase from AngularJS, JavaScript, and SCSS to StencilJS, TypeScript, and SCSS, introducing new architectural and state-management patterns that enabled framework-agnostic component reuse across the shared web component library, reducing duplication and speeding up new feature development",
-          "Owned the full frontend engineering lifecycle for the Fusion Admin UI, from concept through post-QE feedback, and contributed code to almost every shipped feature, which helped deliver releases on schedule and maintain consistent UI quality",
-          "Built a data-model mapping designer and a custom UI error-logging and observability service using TypeScript and Web Components, providing developers with clear error insights that cut debugging time",
-          "Implemented and maintained SonarQube quality-gate tooling in the frontend pipeline, ensuring code met quality standards and decreasing critical issues by improving early detection",
-          "Accelerated development across multiple SaaS projects by temporarily joining frontend teams, removing technical blockers, and delivering key features on schedule",
-          "Helped design and implement the organization's feature-flag governance model through an engineering process council, later adopted org-wide",
-          "Mentored junior frontend engineers across squads on code practices, Pull Request hygiene, and documentation, which improved code quality and reduced review cycle time by fostering consistent engineering processes",
-          "Collaborated closely with Product, Design, Backend, and Quality Engineering teams to align feature requirements and testing strategies, resulting in smoother releases and fewer integration issues",
-          "Flagged feature capability and design gaps and delivered actionable suggestions, helping the team address critical issues before development and improving overall product readiness",
-          "Documented, shared, and maintained technical guides for engineers using Markdown and internal wikis, which increased onboarding efficiency and reduced knowledge-transfer delays"
+          "Transitioned the UI codebase from AngularJS, JavaScript, and SCSS to StencilJS, TypeScript, and SCSS, to implement a web component library that reduced duplicated components across 10 micro frontend repos and 5 squads",
+          "Owned the full frontend engineering lifecycle for the Fusion Admin UI, from concept through post-QE feedback, and contributed code to almost every shipped feature, and shipped features on schedule",
+          "Built a data-model mapping designer and a custom UI error-logging and observability service using TypeScript and Web Components, providing developers with clear error insights that cut debugging time in customer environments",
+          "Implemented SonarQube quality-gate tooling in the frontend pipeline, to set minimum test coverage requirements and catch code smells and security bugs",
+          "Assisted other frontend teams with high-priority deliverables by removing technical blockers and making codebases production ready",
+          "Helped design and implement the organization’s feature-flag governance model across engineering to enable continuous feature releases on the SaaS platform",
+          "Collaborated closely with Product, Design, Backend, and Quality Engineering teams to align feature requirements and testing strategies, resulting in smoother releases and fewer integration issues"
         ],
         "tags": [
           "AngularJS",
@@ -133,12 +127,11 @@
         "subtitle": "Lucidworks — Dubai (Remote) — Sep 2014 – Nov 2017",
         "bulletsLabel": "Role & Responsibilities",
         "bullets": [
-          "Developed Fusion Admin UI (v1.2+) using Angular 1.2+ and SCSS, enabling faster configuration of admin panels and reducing UI bugs",
-          "Led development of Query Workbench and Search UI, a reactive pipeline configuration tool that let engineers preview live query changes and compare results with production output, improving debugging efficiency and supporting faceting features",
-          "Built UI components for search-domain elements such as data sources, connectors, pipelines, and profiles, supporting ingestion, indexing, and querying workflows and streamlining user interactions",
-          "Integrated UI features with Fusion and Solr APIs using mocked data stores resulting in quicker delivery times and increased feature reliability",
-          "Advanced from following specs to defining frontend integration requirements and architecture decisions, bridging UI design and engineering and mentoring junior developers through structured mentorship",
-          "Collaborated with Product, Design, Core Engineering, and Quality Engineering teams, using GitHub Actions, SonarQube, and Jenkins to set up automated unit and integration testing and code-style checks, which delivered higher-quality software faster"
+          "Developed Fusion Admin UI from v1.2 onwards in Angular 1.2+ along with SCSS",
+          "Led development of Query Workbench and Search UI features in Fusion, a real-time pipeline configuration tool that let engineers preview live query changes and compare results with production output, improving debugging efficiency for implementation teams",
+          "Implemented UI features for a broad range of Search-domain concepts (datasources, connectors, pipelines, profiles) spanning ingestion, indexing, and querying",
+          "Integrated UI features with Fusion and Solr APIs using mocked data stores resulting in quicker delivery times to production",
+          "Advanced from following specs to defining and owning frontend integration requirements and architecture decisions"
         ],
         "tags": [
           "AngularJS",
@@ -148,25 +141,6 @@
           "Result-diffing/Comparison Tooling",
           "Jenkins"
         ]
-      }
-    },
-    {
-      "id": "honeywell-intern-engineer",
-      "facets": {
-        "skill": ["Languages & Frameworks"],
-        "roleType": ["Full-time"],
-        "location": ["Bengaluru"],
-        "period": ["Dec 2011 – Sep 2014"]
-      },
-      "data": {
-        "title": "Intern & Engineer",
-        "subtitle": "Honeywell Technology Solutions Lab — Bengaluru — Dec 2011 – Sep 2014",
-        "bulletsLabel": "Role & Responsibilities",
-        "bullets": [
-          "Developed the HTML5 proof-of-concept for a remote web server supporting a home-security system, using CSS and JavaScript; later adopted as the foundation for the subsequent Engineer role. Code was shipped to production in the EMEA region",
-          "Created an original in-house comic strip to illustrate process-improvement concepts and designed recognition cards that encouraged team members to apply the concepts, resulting in increased adoption of the new processes across the team"
-        ],
-        "tags": ["HTML5", "CSS3", "JavaScript", "jQuery"]
       }
     }
   ]
