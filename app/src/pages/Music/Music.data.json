@@ -525,6 +525,190 @@
         "address": "2727 California St, Berkeley, CA",
         "description": "House band performance"
       }
+    },
+    {
+      "id": "gig-2026-08-15-living-room-session",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Living Room"],
+        "city": ["Oakland"],
+        "year": ["2026"],
+        "billing": ["Solo Act"]
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Living Room Session - Other Side of Me",
+        "subtitle": "Aug 15, 2026",
+        "badge": "Solo Act",
+        "description": "Right Proper performs an intimate, stripped-down version of \"Other Side of Me,\" recorded live on June 27, 2026, in Oakland, California",
+        "links": [
+          { "label": "Watch on YouTube", "url": "https://www.youtube.com/watch?v=MdRZx9FHAZA" }
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-09-06-starry-plough",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Sep 9, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
+      }
+    },
+    {
+      "id": "gig-2026-09-12-amsterdam-cafe",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Amsterdam Cafe"],
+        "city": ["San Francisco"],
+        "year": ["2026"],
+        "billing": ["Headlining Act"],
+        "band": [
+          "DJ Aggrofemm",
+          "Wonderland Rejects",
+          "Three Reefs Deep",
+          "Arcade 9",
+          "Godgifu"
+        ],
+        "upcoming": true
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Amsterdam Cafe (UPCOMING)",
+        "titleUrl": "https://www.amsterdamsf.com/home",
+        "subtitle": "Sep 12, 2026",
+        "address": "930 Geary Street, San Francisco, CA",
+        "badge": "Headlining Act",
+        "description": "Grrrl Power Rocks",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "DJ Aggrofemm",
+          "Wonderland Rejects",
+          "Three Reefs Deep",
+          "Arcade 9",
+          "Godgifu",
+          "Right Proper"
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-09-18-palace-of-fine-arts",
+      "facets": {
+        "genre": ["Balinese Gamelan"],
+        "ensemble": ["Gamelan Sekar Jaya"],
+        "venue": ["Palace of Fine Arts"],
+        "city": ["San Francisco"],
+        "year": ["2026"]
+      },
+      "data": {
+        "category": "Gamelan Sekar Jaya",
+        "title": "Palace of Fine Arts (UPCOMING)",
+        "titleUrl": "https://palaceoffinearts.com/",
+        "subtitle": "Sep 18, 2026",
+        "address": "3301 Lyon St, San Francisco, CA",
+        "description": "Private event hosted by the Consulate General of Indonesia in San Francisco to honor the Independence Day of the Republic of Indonesia",
+        "tagsLabel": "Lineup",
+        "tags": ["Gong Kebyar"]
+      }
+    },
+    {
+      "id": "gig-2026-09-19-headyworks-brewing",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Headyworks Brewing & Tap Room"],
+        "city": ["Livermore"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "My Youth Worn to Rust",
+          "Jackie Clementine",
+          "Tiger Shade"
+        ],
+        "upcoming": true
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Headyworks Brewing & Tap Room (UPCOMING)",
+        "titleUrl": "https://www.headyworks.com/",
+        "subtitle": "Sep 19, 2026",
+        "address": "468 Franklin Ln Unit B, Livermore, CA",
+        "badge": "Supporting Act",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "My Youth Worn to Rust",
+          "Right Proper",
+          "Jackie Clementine",
+          "Tiger Shade"
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-10-31-fireside",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["The Fireside Lounge"],
+        "city": ["Alameda"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": [
+          "TBA"
+        ],
+        "upcoming": true
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "The Fireside Lounge (UPCOMING)",
+        "titleUrl": "https://www.thefiresidelounge.com/",
+        "subtitle": "Oct 31, 2026",
+        "address": "1453 Webster St, Alameda, CA",
+        "badge": "Opening Act",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "Right Proper",
+          "TBA"
+        ]
+      }
+    },
+    {
+      "id": "gig-2026-12-05-up-the-creek",
+      "facets": {
+        "genre": ["indie Rock"],
+        "ensemble": ["Right Proper"],
+        "venue": ["Up the Creek Records"],
+        "city": ["Walnut Creek"],
+        "year": ["2026"],
+        "billing": ["Headlining Act"],
+        "band": [
+          "TBA"
+        ],
+        "upcoming": true
+      },
+      "data": {
+        "category": "Right Proper",
+        "title": "Up the Creek Records (UPCOMING)",
+        "titleUrl": "http://www.upthecreekrecords.com/",
+        "subtitle": "Dec 4, 2026",
+        "address": "2042 Mt Diablo Blvd, Walnut Creek, CA",
+        "badge": "Headlining Act",
+        "tagsLabel": "Lineup",
+        "tags": [
+          "TBA"
+        ]
+      }
     }
   ]
 }
