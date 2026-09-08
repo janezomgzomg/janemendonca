@@ -8,8 +8,9 @@
   },
   "paragraphs": [
     "Hello, I am Jane Mendonca!",
-    "I am a Frontend Product Engineer with staff-level experience delivering data-intensive enterprise search interfaces. I find great satisfaction in applying deep frontend architecture expertise to drive innovative, high-impact products.",
-    "I am also a multi-instrumentalist whose work spans across multiple genres including rock, metal, jazz, funk, bluegrass, and Balinese gamelan. As an accompanist and jam supporter, I bring in a strong foundation in collaboration, arrangement, sound design, and spontaneous musical interaction, and I love helping musicians of all backgrounds perform at their best. I currently perform with Right Proper, Gamelan Sekar Jaya, and SingJam (Sacred Music Fellowship). I am also a Board member of Sacred Music Fellowship.",
+    "I am a Frontend Product Engineer with staff-level experience delivering data-intensive enterprise search interfaces. I have architected, built, and shipped reactive UI interfaces that let search engineers configure complex, multi-stage data pipelines in tandem with fast-changing, high-stakes datasets while also maintaining a web component library.",
+    "I'm currently expanding into full-stack development, building \"Rhythms with Polly\" (a rhythm training app for musicians) end-to-end with React, Vite, TypeScript, and Tailwind CSS on the frontend and NestJS, PostgreSQL, and Prisma on the backend.",
+    "I am also a multi-instrumentalist whose work spans across multiple genres including rock, metal, jazz, funk, bluegrass, and Balinese gamelan. As an accompanist and jam supporter, I bring in a strong foundation in collaboration, arrangement, sound design, and spontaneous musical interaction, and I love helping musicians of all backgrounds perform at their best. I currently perform with Right Proper, Gamelan Sekar Jaya, and SingJam (Sacred Music Fellowship). I am also a voluntary Board member of Sacred Music Fellowship.",
     "In my free time, I entertain my senior tabby cat, tend to my patio garden, make art, jam in the forest with friends, and snowboard."
   ]
 }
