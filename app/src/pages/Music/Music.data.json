@@ -769,6 +769,7 @@
       "id": "gig-2026-11-17-thee-stork-club",
       "date": "2026-11-17",
       "facets": {
+        "genre": ["Doom Metal"],
         "ensemble": ["Sapirwhorf"],
         "venue": ["Thee Stork Club"],
         "city": ["Oakland"],
