@@ -383,7 +383,7 @@
         "address": "Golden Gate Park, San Francisco, CA",
         "description": "Gamelan in the Garden, presented by Gamelan Sekar Jaya with support from the Consulate General of Indonesia in San Francisco. Performed with the Angklung Ensemble alongside Gong Kebyar in the Celebration Garden; Gender Wayang and Jegog performed earlier in other areas of the garden.",
         "tagsLabel": "Lineup",
-        "tags": ["Gong Kebyar"]
+        "tags": ["Angklung", "Gong Kebyar"]
       }
     },
     {
@@ -427,7 +427,9 @@
         "titleUrl": "https://www.firstchurchberkeley.org/",
         "subtitle": "Jun 9, 2026",
         "address": "2345 Channing Way, Berkeley, CA",
-        "description": "Performed with Gamelan Sekar Jaya as part of the 19th biennial Berkeley Festival & Exhibition, produced by the San Francisco Early Music Society."
+        "description": "Performed with Gamelan Sekar Jaya as part of the 19th biennial Berkeley Festival & Exhibition, produced by the San Francisco Early Music Society.",
+        "tagsLabel": "Lineup",
+        "tags": ["Angklung"]
       }
     },
     {
@@ -645,7 +647,7 @@
         "address": "3301 Lyon St, San Francisco, CA",
         "description": "Private event hosted by the Consulate General of Indonesia in San Francisco to honor the Independence Day of the Republic of Indonesia",
         "tagsLabel": "Lineup",
-        "tags": ["Gong Kebyar"]
+        "tags": ["Angklung", "Jegog"]
       }
     },
     {
@@ -678,6 +680,26 @@
           "Jackie Clementine",
           "Tiger Shade"
         ]
+      }
+    },
+    {
+      "id": "gig-2026-10-04-starry-plough",
+      "date": "2026-10-04",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Oct 4, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
       }
     },
     {
@@ -719,7 +741,8 @@
         "title": "The Starry Plough Pub",
         "titleUrl": "https://thestarryplough.com/",
         "subtitle": "Nov 1, 2026",
-        "address": "3101 Shattuck Ave, Berkeley, CA 94705"
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
       }
     },
     {
@@ -750,7 +773,8 @@
         "venue": ["Thee Stork Club"],
         "city": ["Oakland"],
         "year": ["2026"],
-        "band": []
+        "billing": ["Supporting Act"],
+        "band": ["Feral Dream"]
       },
       "data": {
         "category": "Sapirwhorf",
@@ -758,7 +782,10 @@
         "titleUrl": "https://www.theestorkclub.com/",
         "subtitle": "Nov 17, 2026",
         "address": "2330 Telegraph Ave, Oakland, CA 94612",
-        "description": "Sitting in on synth bass"
+        "badge": "Supporting Act",
+        "description": "Sitting in on synth bass",
+        "tagsLabel": "Lineup",
+        "tags": ["Sapirwhorf", "Feral Dream"]
       }
     },
     {
@@ -768,13 +795,17 @@
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
         "venue": ["Heads and Tails BBQ"],
+        "city": ["Berkeley"],
         "year": ["2026"],
         "band": []
       },
       "data": {
         "category": "SingJam",
         "title": "Heads and Tails BBQ",
-        "subtitle": "Nov 21, 2026"
+        "titleUrl": "https://headsandtailsbarbecue.com/",
+        "subtitle": "Nov 21, 2026",
+        "address": "2121 San Pablo Ave, Berkeley, CA 94702",
+        "description": "House band performance"
       }
     },
     {
