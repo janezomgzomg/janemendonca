@@ -9,6 +9,7 @@ export type FacetDefinition = z.infer<typeof facetDefinitionSchema>
 // facetedDatasetSchema(dataSchema) infers once dataSchema is fixed.
 export type FacetedItem<T> = {
   id: string
+  date?: string
   facets: Record<string, string[]>
   data: T
 }

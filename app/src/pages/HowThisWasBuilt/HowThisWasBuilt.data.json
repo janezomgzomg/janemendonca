@@ -55,12 +55,12 @@
         {
           "kind": "code",
           "language": "ts — the section vocabulary",
-          "code": "type Section =\n  | { kind: 'imageWithText'; imageField: string; textField: string }\n  | { kind: 'linkList'; field: string }\n  | { kind: 'facetedSearch'; facetsField: string; itemsField: string }\n  | { kind: 'sectionList'; field: string }"
+          "code": "type Section =\n  | { kind: 'imageWithText'; imageField: string; textField: string }\n  | { kind: 'linkList'; field: string }\n  | {\n      kind: 'facetedSearch'\n      facetsField: string\n      itemsField: string\n      orderField?: string\n      upcomingField?: string\n    }\n  | { kind: 'sectionList'; field: string }"
         },
         {
           "kind": "code",
           "language": "SearchPage.layout.json",
-          "code": "[\n  { \"kind\": \"linkList\", \"field\": \"links\" },\n  {\n    \"kind\": \"facetedSearch\",\n    \"facetsField\": \"facetDefinitions\",\n    \"itemsField\": \"items\"\n  }\n]"
+          "code": "[\n  { \"kind\": \"linkList\", \"field\": \"links\" },\n  {\n    \"kind\": \"facetedSearch\",\n    \"facetsField\": \"facetDefinitions\",\n    \"itemsField\": \"items\",\n    \"orderField\": \"resultsOrder\",\n    \"upcomingField\": \"upcomingSection\"\n  }\n]"
         }
       ]
     },

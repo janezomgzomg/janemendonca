@@ -61,4 +61,10 @@ export const searchPageSchema = facetedDatasetSchema(searchResultDataSchema).ext
   // Optional supplementary links (e.g. Music's external platform links).
   // Omitted entirely for pages with nothing to link to (e.g. Resume).
   links: z.array(pageLinkSchema).optional(),
+  // "newestFirst" sorts results by each item's `date`, latest at the top.
+  // Omitted, results stay in file order.
+  resultsOrder: z.enum(['newestFirst']).optional(),
+  // When set, items dated today or later are pulled into a highlighted
+  // section above the rest, soonest first (e.g. Music's "Upcoming Gigs").
+  upcomingSection: z.object({ heading: z.string() }).optional(),
 })

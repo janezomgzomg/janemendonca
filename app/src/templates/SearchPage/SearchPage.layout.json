@@ -1,4 +1,10 @@
 [
   { "kind": "linkList", "field": "links" },
-  { "kind": "facetedSearch", "facetsField": "facetDefinitions", "itemsField": "items" }
+  {
+    "kind": "facetedSearch",
+    "facetsField": "facetDefinitions",
+    "itemsField": "items",
+    "orderField": "resultsOrder",
+    "upcomingField": "upcomingSection"
+  }
 ]

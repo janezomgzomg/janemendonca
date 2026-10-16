@@ -1,11 +1,21 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import PageRenderingTemplate from '../../templates/PageRenderingTemplate/PageRenderingTemplate'
 import { musicSchema } from './Music.schema'
 import rawData from './Music.data.json'
 
 describe('Music', () => {
+  // Pin "today" so which gigs count as upcoming doesn't drift with the
+  // calendar. Only Date is faked, so userEvent's timers still run.
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date(2026, 9, 16, 12))
+  })
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   it('renders the Instagram link', () => {
     const data = musicSchema.parse(rawData)
     render(<PageRenderingTemplate data={data} />)
@@ -37,11 +47,14 @@ describe('Music', () => {
     const data = musicSchema.parse(rawData)
     render(<PageRenderingTemplate data={data} />)
 
-    const link = screen.getByRole('link', { name: 'Watch on YouTube' })
-    expect(link).toHaveAttribute(
-      'href',
-      'https://youtu.be/A4xXYbWjIUw?si=Bm4U4oL5RlOS3Eii',
-    )
+    const link = screen
+      .getAllByRole('link', { name: 'Watch on YouTube' })
+      .find(
+        (a) =>
+          a.getAttribute('href') ===
+          'https://youtu.be/A4xXYbWjIUw?si=Bm4U4oL5RlOS3Eii',
+      )
+    expect(link).toBeDefined()
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
   })
@@ -113,11 +126,61 @@ describe('Music', () => {
     expect(venueLink).toHaveAttribute('target', '_blank')
   })
 
-  it('lists gigs in chronological order', () => {
+  it("gives every gig a date matching the date shown on its card", () => {
     const data = musicSchema.parse(rawData)
-    const dates = data.items.map((item) => new Date(item.data.subtitle ?? ''))
-    const sorted = [...dates].sort((a, b) => a.getTime() - b.getTime())
-    expect(dates).toEqual(sorted)
+    for (const item of data.items) {
+      const shown = new Date(item.data.subtitle ?? '')
+      const iso = `${shown.getFullYear()}-${String(shown.getMonth() + 1).padStart(2, '0')}-${String(shown.getDate()).padStart(2, '0')}`
+      expect(item.date, item.id).toBe(iso)
+    }
+  })
+
+  it('pins future gigs under Upcoming Gigs, soonest first', () => {
+    const data = musicSchema.parse(rawData)
+    render(<PageRenderingTemplate data={data} />)
+
+    const upcoming = screen.getByRole('region', { name: 'Upcoming Gigs' })
+    const expected = data.items
+      .filter((item) => (item.date ?? '') >= '2026-10-16')
+      .sort((a, b) => (a.date ?? '').localeCompare(b.date ?? ''))
+      .map((item) => item.data.subtitle)
+
+    expect(expected.length).toBeGreaterThan(0)
+    const shown = within(upcoming)
+      .getAllByRole('article')
+      .map((card) => expected.find((d) => within(card).queryByText(d ?? '')))
+    expect(shown).toEqual(expected)
+  })
+
+  it('lists past gigs newest first, below the upcoming section', () => {
+    const data = musicSchema.parse(rawData)
+    render(<PageRenderingTemplate data={data} />)
+
+    const upcoming = screen.getByRole('region', { name: 'Upcoming Gigs' })
+    const pastCards = screen
+      .getAllByRole('article')
+      .filter((card) => !upcoming.contains(card))
+    const expected = data.items
+      .filter((item) => (item.date ?? '') < '2026-10-16')
+      .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+      .map((item) => item.data.subtitle ?? '')
+
+    expect(pastCards).toHaveLength(expected.length)
+    pastCards.forEach((card, index) => {
+      expect(within(card).getByText(expected[index])).toBeInTheDocument()
+    })
+  })
+
+  it('hides the upcoming section when a filter leaves no future gigs', async () => {
+    const user = userEvent.setup()
+    const data = musicSchema.parse(rawData)
+    render(<PageRenderingTemplate data={data} />)
+
+    await user.click(screen.getByRole('button', { name: /^2025 \(/ }))
+
+    expect(
+      screen.queryByRole('region', { name: 'Upcoming Gigs' }),
+    ).not.toBeInTheDocument()
   })
 
   it('filters to a single ensemble', async () => {

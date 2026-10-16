@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import type { ReactNode } from 'react'
 import FacetedBrowser from '../../components/FacetedBrowser/FacetedBrowser'
+import type { PinnedGroup } from '../../components/FacetedBrowser/FacetedBrowser'
 import type {
   FacetDefinition,
   FacetedItem,
@@ -34,6 +35,24 @@ function getField(data: Record<string, unknown>, field: string): unknown {
 // prefix does, so it has to be applied at render time.
 function withBaseUrl(path: string): string {
   return `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+}
+
+// Today's date as YYYY-MM-DD in the visitor's local time zone, so an item
+// dated today still counts as upcoming for the whole day.
+function todayIsoDate(): string {
+  const now = new Date()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${now.getFullYear()}-${month}-${day}`
+}
+
+// Latest date first; undated items keep their file order after dated ones.
+// Array.prototype.sort is stable, so ties keep file order too.
+function sortNewestFirst<T extends { date?: string }>(items: T[]): T[] {
+  return [...items].sort((a, b) => {
+    if (!a.date || !b.date) return (a.date ? 0 : 1) - (b.date ? 0 : 1)
+    return b.date.localeCompare(a.date)
+  })
 }
 
 // Minimal monochrome brand marks (matching the icon set convention used by
@@ -244,13 +263,32 @@ function renderSection(section: Section, data: Record<string, unknown>): ReactNo
 
     case 'facetedSearch': {
       const facetDefinitions = getField(data, section.facetsField) as FacetDefinition[]
-      const items = getField(data, section.itemsField) as FacetedItem<SearchResultData>[]
+      const rawItems = getField(data, section.itemsField) as FacetedItem<SearchResultData>[]
+      const order = section.orderField
+        ? (getField(data, section.orderField) as 'newestFirst' | undefined)
+        : undefined
+      const upcoming = section.upcomingField
+        ? (getField(data, section.upcomingField) as { heading: string } | undefined)
+        : undefined
+
+      const items = order === 'newestFirst' ? sortNewestFirst(rawItems) : rawItems
+
+      let pinned: PinnedGroup<SearchResultData> | undefined
+      if (upcoming) {
+        const today = todayIsoDate()
+        pinned = {
+          heading: upcoming.heading,
+          matches: (item) => item.date !== undefined && item.date >= today,
+          compare: (a, b) => (a.date ?? '').localeCompare(b.date ?? ''),
+        }
+      }
 
       return (
         <div className="mt-6">
           <FacetedBrowser
             dataset={{ facetDefinitions, items }}
             renderResult={(item) => <SearchResultCard data={item.data} />}
+            pinned={pinned}
           />
         </div>
       )

@@ -30,6 +30,11 @@ export const sectionSchema = z.discriminatedUnion('kind', [
     kind: z.literal('facetedSearch'),
     facetsField: z.string(),
     itemsField: z.string(),
+    // Optional page-level settings for ordering results and pinning
+    // upcoming ones to the top. Pages that omit these fields keep their
+    // items in file order (e.g. Resume).
+    orderField: z.string().optional(),
+    upcomingField: z.string().optional(),
   }),
   z.object({
     kind: z.literal('sectionList'),

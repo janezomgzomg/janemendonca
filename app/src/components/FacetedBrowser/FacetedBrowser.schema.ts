@@ -12,6 +12,9 @@ export const facetDefinitionSchema = z.object({
 export function facetedItemSchema<T extends z.ZodTypeAny>(dataSchema: T) {
   return z.object({
     id: z.string(),
+    // Optional ISO date (YYYY-MM-DD) for datasets ordered or grouped by
+    // date, e.g. Music's gig date.
+    date: z.iso.date().optional(),
     facets: z.record(z.string(), z.array(z.string())),
     data: dataSchema,
   })
