@@ -689,10 +689,8 @@
         "venue": ["The Fireside Lounge"],
         "city": ["Alameda"],
         "year": ["2026"],
-        "billing": ["Supporting Act"],
-        "band": [
-          "TBA"
-        ]
+        "billing": ["Opening Act"],
+        "band": ["M Jones and The Melee"]
       },
       "data": {
         "category": "Right Proper",
@@ -702,15 +700,86 @@
         "address": "1453 Webster St, Alameda, CA",
         "badge": "Opening Act",
         "tagsLabel": "Lineup",
-        "tags": [
-          "Right Proper",
-          "TBA"
-        ]
+        "tags": ["Right Proper", "M Jones and The Melee"]
+      }
+    },
+    {
+      "id": "gig-2026-11-01-starry-plough",
+      "date": "2026-11-01",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Nov 1, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705"
+      }
+    },
+    {
+      "id": "gig-2026-11-14-la-pena",
+      "date": "2026-11-14",
+      "facets": {
+        "genre": ["Balinese Gamelan"],
+        "ensemble": ["Gamelan Sekar Jaya"],
+        "venue": ["La Peña Cultural Center"],
+        "city": ["Berkeley"],
+        "year": ["2026"]
+      },
+      "data": {
+        "category": "Gamelan Sekar Jaya",
+        "title": "La Peña Cultural Center",
+        "titleUrl": "https://lapena.org/",
+        "subtitle": "Nov 14, 2026",
+        "address": "3105 Shattuck Ave, Berkeley, CA 94705",
+        "tagsLabel": "Lineup",
+        "tags": ["Angklung"]
+      }
+    },
+    {
+      "id": "gig-2026-11-17-thee-stork-club",
+      "date": "2026-11-17",
+      "facets": {
+        "ensemble": ["Sapirwhorf"],
+        "venue": ["Thee Stork Club"],
+        "city": ["Oakland"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "Sapirwhorf",
+        "title": "Thee Stork Club",
+        "titleUrl": "https://www.theestorkclub.com/",
+        "subtitle": "Nov 17, 2026",
+        "address": "2330 Telegraph Ave, Oakland, CA 94612",
+        "description": "Sitting in on synth bass"
+      }
+    },
+    {
+      "id": "gig-2026-11-21-heads-and-tails-bbq",
+      "date": "2026-11-21",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["Heads and Tails BBQ"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "Heads and Tails BBQ",
+        "subtitle": "Nov 21, 2026"
       }
     },
     {
       "id": "gig-2026-12-05-up-the-creek",
-      "date": "2026-12-04",
+      "date": "2026-12-05",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -718,21 +787,17 @@
         "city": ["Walnut Creek"],
         "year": ["2026"],
         "billing": ["Headlining Act"],
-        "band": [
-          "TBA"
-        ]
+        "band": ["PeaBoo & The Cats", "Coral 9"]
       },
       "data": {
         "category": "Right Proper",
         "title": "Up the Creek Records",
         "titleUrl": "http://www.upthecreekrecords.com/",
-        "subtitle": "Dec 4, 2026",
+        "subtitle": "Dec 5, 2026",
         "address": "2042 Mt Diablo Blvd, Walnut Creek, CA",
         "badge": "Headlining Act",
         "tagsLabel": "Lineup",
-        "tags": [
-          "TBA"
-        ]
+        "tags": ["PeaBoo & The Cats", "Coral 9", "Right Proper"]
       }
     }
   ]
