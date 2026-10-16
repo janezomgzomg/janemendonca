@@ -1,6 +1,8 @@
 {
   "template": "search",
   "heading": "Music",
+  "resultsOrder": "newestFirst",
+  "upcomingSection": { "heading": "Upcoming Gigs" },
   "links": [
     { "label": "Instagram", "url": "https://www.instagram.com/janemendoncakeys/", "icon": "instagram" }
   ],
@@ -16,6 +18,7 @@
   "items": [
     {
       "id": "gig-2025-07-19-oreillys",
+      "date": "2025-07-19",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -39,6 +42,7 @@
     },
     {
       "id": "gig-2025-08-15-oreillys",
+      "date": "2025-08-15",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -61,6 +65,7 @@
     },
     {
       "id": "gig-2025-08-23-winters-tavern",
+      "date": "2025-08-23",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -101,6 +106,7 @@
     },
     {
       "id": "gig-2025-09-27-kilowatt",
+      "date": "2025-09-27",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -123,6 +129,7 @@
     },
     {
       "id": "gig-2025-12-04-soundwaves-xmas",
+      "date": "2025-12-04",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -178,6 +185,7 @@
     },
     {
       "id": "gig-2026-01-17-up-the-creek",
+      "date": "2026-01-17",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -200,6 +208,7 @@
     },
     {
       "id": "gig-2026-02-21-knockout",
+      "date": "2026-02-21",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -223,6 +232,7 @@
     },
     {
       "id": "gig-2026-04-03-hotel-utah",
+      "date": "2026-04-03",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -246,6 +256,7 @@
     },
     {
       "id": "gig-2026-04-16-brick-and-mortar",
+      "date": "2026-04-16",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -268,6 +279,7 @@
     },
     {
       "id": "gig-2026-04-18-she-shreds-fest",
+      "date": "2026-04-18",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -307,6 +319,7 @@
     },
     {
       "id": "gig-2026-05-02-elis-mile-high",
+      "date": "2026-05-02",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -330,6 +343,7 @@
     },
     {
       "id": "gig-2026-05-21-sf-eagle",
+      "date": "2026-05-21",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -352,6 +366,7 @@
     },
     {
       "id": "gig-2026-05-31-gamelan-in-the-garden",
+      "date": "2026-05-31",
       "facets": {
         "genre": ["Balinese Gamelan"],
         "ensemble": ["Gamelan Sekar Jaya"],
@@ -373,6 +388,7 @@
     },
     {
       "id": "gig-2026-06-06-art-house-gallery",
+      "date": "2026-06-06",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -396,6 +412,7 @@
     },
     {
       "id": "gig-2026-06-09-berkeley-festival",
+      "date": "2026-06-09",
       "facets": {
         "genre": ["Balinese Gamelan"],
         "ensemble": ["Gamelan Sekar Jaya"],
@@ -415,6 +432,7 @@
     },
     {
       "id": "gig-2026-06-13-starry-plough",
+      "date": "2026-06-13",
       "facets": {
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
@@ -434,6 +452,7 @@
     },
     {
       "id": "gig-2026-06-20-donkey-and-goat",
+      "date": "2026-06-20",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -472,6 +491,7 @@
     },
     {
       "id": "gig-2026-06-28-oakland-grove",
+      "date": "2026-06-28",
       "facets": {
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
@@ -491,6 +511,7 @@
     },
     {
       "id": "gig-2026-07-11-starry-plough",
+      "date": "2026-07-11",
       "facets": {
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
@@ -510,6 +531,7 @@
     },
     {
       "id": "gig-2026-07-26-2727-california",
+      "date": "2026-07-26",
       "facets": {
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
@@ -528,6 +550,7 @@
     },
     {
       "id": "gig-2026-08-15-living-room-session",
+      "date": "2026-08-15",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -549,6 +572,7 @@
     },
     {
       "id": "gig-2026-09-06-starry-plough",
+      "date": "2026-09-09",
       "facets": {
         "genre": ["Community Jam"],
         "ensemble": ["SingJam"],
@@ -568,6 +592,7 @@
     },
     {
       "id": "gig-2026-09-12-amsterdam-cafe",
+      "date": "2026-09-12",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -585,7 +610,7 @@
       },
       "data": {
         "category": "Right Proper",
-        "title": "Amsterdam Cafe (UPCOMING)",
+        "title": "Amsterdam Cafe",
         "titleUrl": "https://www.amsterdamsf.com/home",
         "subtitle": "Sep 12, 2026",
         "address": "930 Geary Street, San Francisco, CA",
@@ -604,6 +629,7 @@
     },
     {
       "id": "gig-2026-09-18-palace-of-fine-arts",
+      "date": "2026-09-18",
       "facets": {
         "genre": ["Balinese Gamelan"],
         "ensemble": ["Gamelan Sekar Jaya"],
@@ -613,7 +639,7 @@
       },
       "data": {
         "category": "Gamelan Sekar Jaya",
-        "title": "Palace of Fine Arts (UPCOMING)",
+        "title": "Palace of Fine Arts",
         "titleUrl": "https://palaceoffinearts.com/",
         "subtitle": "Sep 18, 2026",
         "address": "3301 Lyon St, San Francisco, CA",
@@ -624,6 +650,7 @@
     },
     {
       "id": "gig-2026-09-19-headyworks-brewing",
+      "date": "2026-09-19",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -639,7 +666,7 @@
       },
       "data": {
         "category": "Right Proper",
-        "title": "Headyworks Brewing & Tap Room (UPCOMING)",
+        "title": "Headyworks Brewing & Tap Room",
         "titleUrl": "https://www.headyworks.com/",
         "subtitle": "Sep 19, 2026",
         "address": "468 Franklin Ln Unit B, Livermore, CA",
@@ -655,6 +682,7 @@
     },
     {
       "id": "gig-2026-10-31-fireside",
+      "date": "2026-10-31",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -668,7 +696,7 @@
       },
       "data": {
         "category": "Right Proper",
-        "title": "The Fireside Lounge (UPCOMING)",
+        "title": "The Fireside Lounge",
         "titleUrl": "https://www.thefiresidelounge.com/",
         "subtitle": "Oct 31, 2026",
         "address": "1453 Webster St, Alameda, CA",
@@ -682,6 +710,7 @@
     },
     {
       "id": "gig-2026-12-05-up-the-creek",
+      "date": "2026-12-04",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -695,7 +724,7 @@
       },
       "data": {
         "category": "Right Proper",
-        "title": "Up the Creek Records (UPCOMING)",
+        "title": "Up the Creek Records",
         "titleUrl": "http://www.upthecreekrecords.com/",
         "subtitle": "Dec 4, 2026",
         "address": "2042 Mt Diablo Blvd, Walnut Creek, CA",

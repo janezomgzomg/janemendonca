@@ -9,12 +9,23 @@ import './FacetedBrowser.css'
 // one value.
 type Selection = Record<string, string[]>
 
+// An optional highlighted group shown above the other results (e.g. Music's
+// upcoming gigs). It respects the active filters like any other result;
+// `compare` reorders just this group.
+export type PinnedGroup<T> = {
+  heading: string
+  matches: (item: FacetedItem<T>) => boolean
+  compare?: (a: FacetedItem<T>, b: FacetedItem<T>) => number
+}
+
 export default function FacetedBrowser<T>({
   dataset,
   renderResult,
+  pinned,
 }: {
   dataset: FacetedDataset<T>
   renderResult: (item: FacetedItem<T>) => ReactNode
+  pinned?: PinnedGroup<T>
 }) {
   const [selected, setSelected] = useState<Selection>({})
   const [filtersOpen, setFiltersOpen] = useState(false)
@@ -28,6 +39,12 @@ export default function FacetedBrowser<T>({
             item.facets[key]?.some((value) => selected[key].includes(value)),
           ),
         )
+
+  const pinnedItems = pinned ? visibleItems.filter(pinned.matches) : []
+  if (pinned?.compare) pinnedItems.sort(pinned.compare)
+  const otherItems = pinned
+    ? visibleItems.filter((item) => !pinned.matches(item))
+    : visibleItems
 
   function toggleValue(facetKey: string, value: string, multiSelect: boolean) {
     setSelected((current) => {
@@ -143,11 +160,33 @@ export default function FacetedBrowser<T>({
         {visibleItems.length === 0 ? (
           <p>No results.</p>
         ) : (
-          <ul className="space-y-6">
-            {visibleItems.map((item) => (
-              <li key={item.id}>{renderResult(item)}</li>
-            ))}
-          </ul>
+          <>
+            {pinned && pinnedItems.length > 0 && (
+              <section
+                aria-labelledby="pinned-results-heading"
+                className="mb-8 rounded-lg border border-accent/30 bg-accent/5 p-4"
+              >
+                <h2
+                  id="pinned-results-heading"
+                  className="mb-4 font-sans text-xs font-semibold tracking-wide text-accent uppercase"
+                >
+                  {pinned.heading}
+                </h2>
+                <ul className="space-y-6">
+                  {pinnedItems.map((item) => (
+                    <li key={item.id}>{renderResult(item)}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {otherItems.length > 0 && (
+              <ul className="space-y-6">
+                {otherItems.map((item) => (
+                  <li key={item.id}>{renderResult(item)}</li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
       </div>
     </div>

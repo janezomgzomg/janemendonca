@@ -122,4 +122,24 @@ describe('FacetedBrowser', () => {
     expect(screen.getByText('Large Red')).toBeInTheDocument()
     expect(screen.getByText('Small Green')).toBeInTheDocument()
   })
+
+  it('shows a pinned group above the other results, and drops it when filters leave it empty', async () => {
+    const user = userEvent.setup()
+    render(
+      <FacetedBrowser
+        dataset={dataset}
+        renderResult={(item) => item.data.name}
+        pinned={{ heading: 'Featured', matches: (item) => item.id === '2' }}
+      />,
+    )
+
+    const featured = screen.getByRole('region', { name: 'Featured' })
+    expect(featured).toHaveTextContent('Lime')
+    expect(featured).not.toHaveTextContent('Apple')
+    expect(screen.getByText('Apple')).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /Red/ }))
+    expect(screen.queryByRole('region', { name: 'Featured' })).not.toBeInTheDocument()
+    expect(screen.getByText('Apple')).toBeInTheDocument()
+  })
 })
