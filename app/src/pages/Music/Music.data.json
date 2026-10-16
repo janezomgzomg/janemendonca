@@ -383,7 +383,7 @@
         "address": "Golden Gate Park, San Francisco, CA",
         "description": "Gamelan in the Garden, presented by Gamelan Sekar Jaya with support from the Consulate General of Indonesia in San Francisco. Performed with the Angklung Ensemble alongside Gong Kebyar in the Celebration Garden; Gender Wayang and Jegog performed earlier in other areas of the garden.",
         "tagsLabel": "Lineup",
-        "tags": ["Gong Kebyar"]
+        "tags": ["Angklung", "Gong Kebyar"]
       }
     },
     {
@@ -427,7 +427,9 @@
         "titleUrl": "https://www.firstchurchberkeley.org/",
         "subtitle": "Jun 9, 2026",
         "address": "2345 Channing Way, Berkeley, CA",
-        "description": "Performed with Gamelan Sekar Jaya as part of the 19th biennial Berkeley Festival & Exhibition, produced by the San Francisco Early Music Society."
+        "description": "Performed with Gamelan Sekar Jaya as part of the 19th biennial Berkeley Festival & Exhibition, produced by the San Francisco Early Music Society.",
+        "tagsLabel": "Lineup",
+        "tags": ["Angklung"]
       }
     },
     {
@@ -645,7 +647,7 @@
         "address": "3301 Lyon St, San Francisco, CA",
         "description": "Private event hosted by the Consulate General of Indonesia in San Francisco to honor the Independence Day of the Republic of Indonesia",
         "tagsLabel": "Lineup",
-        "tags": ["Gong Kebyar"]
+        "tags": ["Angklung", "Jegog"]
       }
     },
     {
@@ -681,6 +683,26 @@
       }
     },
     {
+      "id": "gig-2026-10-04-starry-plough",
+      "date": "2026-10-04",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Oct 4, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
+      }
+    },
+    {
       "id": "gig-2026-10-31-fireside",
       "date": "2026-10-31",
       "facets": {
@@ -689,10 +711,8 @@
         "venue": ["The Fireside Lounge"],
         "city": ["Alameda"],
         "year": ["2026"],
-        "billing": ["Supporting Act"],
-        "band": [
-          "TBA"
-        ]
+        "billing": ["Opening Act"],
+        "band": ["M Jones and The Melee"]
       },
       "data": {
         "category": "Right Proper",
@@ -702,15 +722,96 @@
         "address": "1453 Webster St, Alameda, CA",
         "badge": "Opening Act",
         "tagsLabel": "Lineup",
-        "tags": [
-          "Right Proper",
-          "TBA"
-        ]
+        "tags": ["Right Proper", "M Jones and The Melee"]
+      }
+    },
+    {
+      "id": "gig-2026-11-01-starry-plough",
+      "date": "2026-11-01",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["The Starry Plough Pub"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "The Starry Plough Pub",
+        "titleUrl": "https://thestarryplough.com/",
+        "subtitle": "Nov 1, 2026",
+        "address": "3101 Shattuck Ave, Berkeley, CA 94705",
+        "description": "House band performance"
+      }
+    },
+    {
+      "id": "gig-2026-11-14-la-pena",
+      "date": "2026-11-14",
+      "facets": {
+        "genre": ["Balinese Gamelan"],
+        "ensemble": ["Gamelan Sekar Jaya"],
+        "venue": ["La Peña Cultural Center"],
+        "city": ["Berkeley"],
+        "year": ["2026"]
+      },
+      "data": {
+        "category": "Gamelan Sekar Jaya",
+        "title": "La Peña Cultural Center",
+        "titleUrl": "https://lapena.org/",
+        "subtitle": "Nov 14, 2026",
+        "address": "3105 Shattuck Ave, Berkeley, CA 94705",
+        "tagsLabel": "Lineup",
+        "tags": ["Angklung"]
+      }
+    },
+    {
+      "id": "gig-2026-11-17-thee-stork-club",
+      "date": "2026-11-17",
+      "facets": {
+        "genre": ["Doom Metal"],
+        "ensemble": ["Sapirwhorf"],
+        "venue": ["Thee Stork Club"],
+        "city": ["Oakland"],
+        "year": ["2026"],
+        "billing": ["Supporting Act"],
+        "band": ["Feral Dream"]
+      },
+      "data": {
+        "category": "Sapirwhorf",
+        "title": "Thee Stork Club",
+        "titleUrl": "https://www.theestorkclub.com/",
+        "subtitle": "Nov 17, 2026",
+        "address": "2330 Telegraph Ave, Oakland, CA 94612",
+        "badge": "Supporting Act",
+        "description": "Sitting in on synth bass",
+        "tagsLabel": "Lineup",
+        "tags": ["Sapirwhorf", "Feral Dream"]
+      }
+    },
+    {
+      "id": "gig-2026-11-21-heads-and-tails-bbq",
+      "date": "2026-11-21",
+      "facets": {
+        "genre": ["Community Jam"],
+        "ensemble": ["SingJam"],
+        "venue": ["Heads and Tails BBQ"],
+        "city": ["Berkeley"],
+        "year": ["2026"],
+        "band": []
+      },
+      "data": {
+        "category": "SingJam",
+        "title": "Heads and Tails BBQ",
+        "titleUrl": "https://headsandtailsbarbecue.com/",
+        "subtitle": "Nov 21, 2026",
+        "address": "2121 San Pablo Ave, Berkeley, CA 94702",
+        "description": "House band performance"
       }
     },
     {
       "id": "gig-2026-12-05-up-the-creek",
-      "date": "2026-12-04",
+      "date": "2026-12-05",
       "facets": {
         "genre": ["indie Rock"],
         "ensemble": ["Right Proper"],
@@ -718,21 +819,17 @@
         "city": ["Walnut Creek"],
         "year": ["2026"],
         "billing": ["Headlining Act"],
-        "band": [
-          "TBA"
-        ]
+        "band": ["PeaBoo & The Cats", "Coral 9"]
       },
       "data": {
         "category": "Right Proper",
         "title": "Up the Creek Records",
         "titleUrl": "http://www.upthecreekrecords.com/",
-        "subtitle": "Dec 4, 2026",
+        "subtitle": "Dec 5, 2026",
         "address": "2042 Mt Diablo Blvd, Walnut Creek, CA",
         "badge": "Headlining Act",
         "tagsLabel": "Lineup",
-        "tags": [
-          "TBA"
-        ]
+        "tags": ["PeaBoo & The Cats", "Coral 9", "Right Proper"]
       }
     }
   ]
